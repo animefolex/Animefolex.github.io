@@ -13,18 +13,13 @@
       margin: 0;
       padding: 0 20px;
     }
-
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
-
     header {
       padding: 20px 0;
       text-align: center;
@@ -32,7 +27,6 @@
       font-size: 28px;
       font-weight: 700;
     }
-
     #animeList {
       max-width: 900px;
       margin: 0 auto;
@@ -41,7 +35,6 @@
       gap: 15px;
       padding-bottom: 50px;
     }
-
     .anime-card {
       background: rgba(26, 26, 26, 0.8);
       border-radius: 8px;
@@ -51,43 +44,49 @@
       cursor: pointer;
       transition: transform 0.2s ease;
     }
-
     .anime-card:hover {
       transform: scale(1.05);
       background-color: #ff3c3c;
       color: white;
     }
-
     .anime-title {
       font-size: 18px;
       font-weight: 600;
+      color: inherit;
+      text-decoration: none;
+      display: block;
     }
   </style>
 </head>
 <body>
 
   <header id="categoryTitle">Category</header>
+  
+  <div style="max-width: 900px; margin: 0 auto 30px;">
+    <a href="index.html" style="color:#ff3c3c; font-weight:700; text-decoration:none;">&larr; Back to Home</a>
+  </div>
 
   <div id="animeList">
-    <!-- Anime cards will be shown here -->
+    <!-- Anime cards will appear here -->
   </div>
 
   <script>
     const animeList = [
-      { title: 'Naruto', genre: 'Action' },
-      { title: 'One Piece', genre: 'Adventure' },
-      { title: 'Your Lie in April', genre: 'Drama' },
-      { title: 'One Punch Man', genre: 'Comedy' },
-      { title: 'Sword Art Online', genre: 'Fantasy' },
-      { title: 'Tokyo Ghoul', genre: 'Horror' },
-      { title: 'Death Note', genre: 'Mystery' },
-      { title: 'Toradora', genre: 'Romance' },
-      { title: 'Steins;Gate', genre: 'Sci-Fi' },
-      { title: 'Clannad', genre: 'Slice of Life' },
-      { title: 'Bleach', genre: 'Supernatural' },
-      { title: 'Haikyuu!!', genre: 'Sports' },
-      { title: 'Gundam', genre: 'Mecha' },
-      { title: 'Psycho-Pass', genre: 'Thriller' },
+      { id: 1, title: 'Naruto', genre: 'Action' },
+      { id: 2, title: 'One Piece', genre: 'Adventure' },
+      { id: 3, title: 'Your Lie in April', genre: 'Drama' },
+      { id: 4, title: 'One Punch Man', genre: 'Comedy' },
+      { id: 5, title: 'Sword Art Online', genre: 'Fantasy' },
+      { id: 6, title: 'Tokyo Ghoul', genre: 'Horror' },
+      { id: 7, title: 'Death Note', genre: 'Mystery' },
+      { id: 8, title: 'Toradora', genre: 'Romance' },
+      { id: 9, title: 'Steins;Gate', genre: 'Sci-Fi' },
+      { id: 10, title: 'Clannad', genre: 'Slice of Life' },
+      { id: 11, title: 'Bleach', genre: 'Supernatural' },
+      { id: 12, title: 'Haikyuu!!', genre: 'Sports' },
+      { id: 13, title: 'Gundam', genre: 'Mecha' },
+      { id: 14, title: 'Psycho-Pass', genre: 'Thriller' },
+      { id: 15, title: 'Orange', genre: 'Slice of Life' }
     ];
 
     function getGenreFromURL() {
@@ -106,7 +105,7 @@
         ? animeList
         : animeList.filter(a => a.genre.toLowerCase() === genre.toLowerCase());
 
-      if(filtered.length === 0) {
+      if (filtered.length === 0) {
         listElement.innerHTML = `<p style="text-align:center; color:#ff3c3c;">No anime found in this category.</p>`;
         return;
       }
@@ -114,7 +113,10 @@
       filtered.forEach(anime => {
         const card = document.createElement('div');
         card.className = 'anime-card';
-        card.innerHTML = `<div class="anime-title">${anime.title}</div>`;
+
+        // Link to anime.html with id param
+        card.innerHTML = `<a href="anime.html?id=${anime.id}" class="anime-title">${anime.title}</a>`;
+
         listElement.appendChild(card);
       });
     }
