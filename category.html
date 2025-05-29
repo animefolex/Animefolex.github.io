@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anime Categories - Animefolex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Category - Animefolex</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -11,62 +11,50 @@
       background-size: cover;
       color: white;
       margin: 0;
-      padding: 0 20px;
+      padding: 20px;
     }
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-    header {
-      padding: 20px 0;
-      text-align: center;
+    h1 {
       color: #ff3c3c;
-      font-size: 28px;
-      font-weight: 700;
+      text-align: center;
     }
-    #animeList {
+    .anime-list {
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 15px;
-      padding-bottom: 50px;
+      padding: 20px 0;
     }
     .anime-card {
-      background: rgba(26, 26, 26, 0.8);
-      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
       padding: 15px;
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
     }
-    .anime-card:hover {
-      transform: scale(1.05);
-      background-color: #ff3c3c;
-    }
-    .anime-title {
-      font-size: 18px;
-      font-weight: 600;
+    .anime-card a {
       color: white;
       text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+    a:hover {
+      color: #ff3c3c;
     }
   </style>
 </head>
 <body>
-
-  <header id="categoryTitle">Category</header>
-  
-  <div style="max-width: 900px; margin: 0 auto 30px;">
-    <a href="index.html" style="color:#ff3c3c; font-weight:700; text-decoration:none;">&larr; Back to Home</a>
-  </div>
-
-  <div id="animeList"></div>
+  <h1 id="categoryTitle">Category</h1>
+  <div class="anime-list" id="animeList"></div>
 
   <script>
-    const animeList = [
+    const animeData = [
       { id: 1, title: 'Naruto', genre: 'Action' },
       { id: 2, title: 'Attack on Titan', genre: 'Action' },
       { id: 3, title: 'My Hero Academia', genre: 'Superhero' },
@@ -80,40 +68,23 @@
       { id: 11, title: 'Orange', genre: 'Slice of Life' }
     ];
 
-    function getGenreFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('genre') || 'All';
-    }
+    const params = new URLSearchParams(window.location.search);
+    const genre = params.get('genre');
 
-    function showAnimeByGenre(genre) {
-      const titleElement = document.getElementById('categoryTitle');
-      titleElement.textContent = genre === 'All' ? 'All Anime' : `Category: ${genre}`;
+    document.getElementById('categoryTitle').textContent = genre ? `Category: ${genre}` : "All Anime";
 
-      const listElement = document.getElementById('animeList');
-      listElement.innerHTML = '';
+    const filtered = genre
+      ? animeData.filter(anime => anime.genre.toLowerCase() === genre.toLowerCase())
+      : animeData;
 
-      const filtered = genre === 'All'
-        ? animeList
-        : animeList.filter(a => a.genre.toLowerCase() === genre.toLowerCase());
+    const container = document.getElementById('animeList');
 
-      if (filtered.length === 0) {
-        listElement.innerHTML = `<p style="text-align:center; color:#ff3c3c;">No anime found in this category.</p>`;
-        return;
-      }
-
-      filtered.forEach(anime => {
-        const card = document.createElement('div');
-        card.className = 'anime-card';
-        card.innerHTML = `<a href="anime.html?id=${anime.id}" class="anime-title">${anime.title}</a>`;
-        listElement.appendChild(card);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const genre = getGenreFromURL();
-      showAnimeByGenre(genre);
+    filtered.forEach(anime => {
+      const card = document.createElement('div');
+      card.className = 'anime-card';
+      card.innerHTML = `<a href="anime.html?id=${anime.id}">${anime.title}</a>`;
+      container.appendChild(card);
     });
   </script>
-
 </body>
 </html>
