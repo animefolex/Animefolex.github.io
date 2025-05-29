@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anime Details - Animefolex</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding: 20px;
+      margin: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(26, 26, 26, 0.85);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: #ff3c3c;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #ff3c3c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    strong {
+      color: #ff9999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+    <div id="anime-details">Loading anime...</div>
+  </div>
+
+  <script>
+    const animeData = [
+      {
+        id: 1,
+        title: 'Naruto',
+        description: 'A young ninja strives to become the Hokage.',
+        image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
+        category: 'Action'
+      },
+      {
+        id: 11,
+        title: 'Orange',
+        description: 'A girl receives letters from her future self to prevent regrets.',
+        image: 'https://upload.wikimedia.org/wikipedia/en/0/05/Orange_manga_volume_1_cover.jpg',
+        category: 'Slice of Life'
+      }
+      // 🔁 Add more anime here...
+    ];
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function loadAnimeDetails() {
+      const id = parseInt(getQueryParam('id'));
+      const anime = animeData.find(a => a.id === id);
+
+      const container = document.getElementById('anime-details');
+
+      if (!anime) {
+        container.innerHTML = '<p>Anime not found.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <img src="${anime.image}" alt="${anime.title}" />
+        <h1>${anime.title}</h1>
+        <p><strong>Category:</strong> ${anime.category}</p>
+        <p>${anime.description}</p>
+      `;
+    }
+
+    loadAnimeDetails();
+  </script>
+
+</body>
+</html>
