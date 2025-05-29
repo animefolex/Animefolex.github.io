@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animefolex - Home</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
       margin: 0;
       padding: 20px;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -20,93 +21,87 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
+
     h1 {
       color: #ff3c3c;
-      text-align: center;
-      margin-bottom: 30px;
     }
-    .anime-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
-      max-width: 1000px;
-      margin: 0 auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    .anime-card {
-      background: rgba(26, 26, 26, 0.8);
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+    li {
+      margin: 10px 0;
     }
-    .anime-card a {
-      color: white;
-      text-decoration: none;
+
+    a {
+      color: #fff;
       font-weight: bold;
-      font-size: 16px;
-      display: block;
-      margin-bottom: 5px;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
-    .anime-card a:hover {
+
+    a:hover {
       color: #ff3c3c;
     }
-    .category-link {
-      color: #ff3c3c;
-      font-size: 14px;
-      text-decoration: underline;
+
+    .categories ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .categories li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .anime-list {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+  <h1>Welcome to Animefolex</h1>
 
-  <h1>Animefolex</h1>
+  <form action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search anime..." required>
+    <button type="submit">Search</button>
+  </form>
 
-  <div class="anime-grid">
-    <div class="anime-card">
-      <a href="anime.html?id=1">Naruto</a>
-      <a href="category.html?genre=Action" class="category-link">Action</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=2">Attack on Titan</a>
-      <a href="category.html?genre=Action" class="category-link">Action</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=3">My Hero Academia</a>
-      <a href="category.html?genre=Superhero" class="category-link">Superhero</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=4">Demon Slayer</a>
-      <a href="category.html?genre=Supernatural" class="category-link">Supernatural</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=5">One Piece</a>
-      <a href="category.html?genre=Adventure" class="category-link">Adventure</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=6">Dragon Ball Z</a>
-      <a href="category.html?genre=Martial Arts" class="category-link">Martial Arts</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=7">Fullmetal Alchemist</a>
-      <a href="category.html?genre=Fantasy" class="category-link">Fantasy</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=8">Tokyo Ghoul</a>
-      <a href="category.html?genre=Horror" class="category-link">Horror</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=9">Death Note</a>
-      <a href="category.html?genre=Psychological Thriller" class="category-link">Psychological Thriller</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=10">Bleach</a>
-      <a href="category.html?genre=Action" class="category-link">Action</a>
-    </div>
-    <div class="anime-card">
-      <a href="anime.html?id=11">Orange</a>
-      <a href="category.html?genre=Slice of Life" class="category-link">Slice of Life</a>
-    </div>
+  <div class="categories">
+    <h2>Browse by Category</h2>
+    <ul>
+      <li><a href="category.html?genre=Action">Action</a></li>
+      <li><a href="category.html?genre=Adventure">Adventure</a></li>
+      <li><a href="category.html?genre=Superhero">Superhero</a></li>
+      <li><a href="category.html?genre=Supernatural">Supernatural</a></li>
+      <li><a href="category.html?genre=Martial Arts">Martial Arts</a></li>
+      <li><a href="category.html?genre=Fantasy">Fantasy</a></li>
+      <li><a href="category.html?genre=Horror">Horror</a></li>
+      <li><a href="category.html?genre=Psychological Thriller">Psychological Thriller</a></li>
+      <li><a href="category.html?genre=Slice of Life">Slice of Life</a></li>
+    </ul>
   </div>
 
+  <div class="anime-list">
+    <h2>Popular Anime</h2>
+    <ul>
+      <li><a href="anime.html?id=1">Naruto</a></li>
+      <li><a href="anime.html?id=2">Attack on Titan</a></li>
+      <li><a href="anime.html?id=3">My Hero Academia</a></li>
+      <li><a href="anime.html?id=4">Demon Slayer</a></li>
+      <li><a href="anime.html?id=5">One Piece</a></li>
+      <li><a href="anime.html?id=6">Dragon Ball Z</a></li>
+      <li><a href="anime.html?id=7">Fullmetal Alchemist</a></li>
+      <li><a href="anime.html?id=8">Tokyo Ghoul</a></li>
+      <li><a href="anime.html?id=9">Death Note</a></li>
+      <li><a href="anime.html?id=10">Bleach</a></li>
+      <li><a href="anime.html?id=11">Orange</a></li>
+    </ul>
+  </div>
 </body>
 </html>
