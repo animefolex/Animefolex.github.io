@@ -6,44 +6,111 @@
   <title>Search Results - Animefolex</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: white;
-      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
     }
-
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
     h1 {
       color: #ff3c3c;
+      margin-bottom: 20px;
     }
-
-    #results {
-      font-size: 18px;
-      margin-top: 20px;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-
+    li {
+      margin-bottom: 12px;
+    }
     a {
-      color: #ff3c3c;
+      color: #fff;
       text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s ease;
     }
-
     a:hover {
+      color: #ff3c3c;
       text-decoration: underline;
+    }
+    nav {
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
+  <nav>
+    <a href="index.html" style="color:#ff3c3c; font-weight:700;">&larr; Back to Home</a>
+  </nav>
+
   <h1>Search Results</h1>
-  <p id="results">Loading...</p>
-  <p><a href="index.html">← Back to Home</a></p>
+  <div id="results">Loading results...</div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const query = params.get("q");
-    const resultsEl = document.getElementById("results");
-    resultsEl.innerText = query
-      ? `You searched for: "${query}"`
-      : "No search query found.";
+    // Sample anime data array
+    const animeList = [
+      { id: 1, title: 'Naruto' },
+      { id: 2, title: 'Attack on Titan' },
+      { id: 3, title: 'My Hero Academia' },
+      { id: 4, title: 'Demon Slayer' },
+      { id: 5, title: 'One Piece' },
+      { id: 6, title: 'Dragon Ball Z' },
+      { id: 7, title: 'Fullmetal Alchemist' },
+      { id: 8, title: 'Tokyo Ghoul' },
+      { id: 9, title: 'Death Note' },
+      { id: 10, title: 'Bleach' }
+    ];
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function showResults() {
+      const query = getQueryParam('q');
+      const resultsDiv = document.getElementById('results');
+
+      if (!query) {
+        resultsDiv.textContent = 'No search query provided.';
+        return;
+      }
+
+      const lowerQuery = query.toLowerCase();
+
+      const filtered = animeList.filter(anime =>
+        anime.title.toLowerCase().includes(lowerQuery)
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.textContent = `No results found for "${query}".`;
+        return;
+      }
+
+      const ul = document.createElement('ul');
+      filtered.forEach(anime => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `anime.html?id=${anime.id}`; // placeholder link for anime detail page
+        a.textContent = anime.title;
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+
+      resultsDiv.innerHTML = '';
+      resultsDiv.appendChild(ul);
+    }
+
+    showResults();
   </script>
 
 </body>
