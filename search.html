@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Results - Animefolex</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #ff3c3c;
+    }
+
+    #results {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #ff3c3c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Search Results</h1>
+  <p id="results">Loading...</p>
+  <p><a href="index.html">← Back to Home</a></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+    const resultsEl = document.getElementById("results");
+    resultsEl.innerText = query
+      ? `You searched for: "${query}"`
+      : "No search query found.";
+  </script>
+
+</body>
+</html>
