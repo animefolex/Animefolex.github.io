@@ -13,6 +13,7 @@
       margin: 0;
       padding: 20px;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -20,17 +21,21 @@
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
+
     h1 {
       color: #ff3c3c;
       margin-bottom: 20px;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
     }
+
     li {
       margin-bottom: 12px;
     }
+
     a {
       color: #fff;
       text-decoration: none;
@@ -38,10 +43,12 @@
       font-size: 18px;
       transition: color 0.3s ease;
     }
+
     a:hover {
       color: #ff3c3c;
       text-decoration: underline;
     }
+
     nav {
       margin-bottom: 30px;
     }
@@ -57,7 +64,7 @@
   <div id="results">Loading results...</div>
 
   <script>
-    // Sample anime data array
+    // ✅ Anime data list (add more if needed)
     const animeList = [
       { id: 1, title: 'Naruto' },
       { id: 2, title: 'Attack on Titan' },
@@ -68,14 +75,17 @@
       { id: 7, title: 'Fullmetal Alchemist' },
       { id: 8, title: 'Tokyo Ghoul' },
       { id: 9, title: 'Death Note' },
-      { id: 10, title: 'Bleach' }
+      { id: 10, title: 'Bleach' },
+      { id: 11, title: 'Orange' }  // ✅ Added Orange
     ];
 
+    // Get search query from URL
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
+    // Display matching results
     function showResults() {
       const query = getQueryParam('q');
       const resultsDiv = document.getElementById('results');
@@ -100,7 +110,7 @@
       filtered.forEach(anime => {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = `anime.html?id=${anime.id}`; // placeholder link for anime detail page
+        a.href = `anime.html?id=${anime.id}`; // Link to detail page
         a.textContent = anime.title;
         li.appendChild(a);
         ul.appendChild(li);
