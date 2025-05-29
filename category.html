@@ -31,7 +31,7 @@
       max-width: 900px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 15px;
       padding-bottom: 50px;
     }
@@ -41,20 +41,17 @@
       padding: 15px;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
       transition: transform 0.2s ease;
     }
     .anime-card:hover {
       transform: scale(1.05);
       background-color: #ff3c3c;
-      color: white;
     }
     .anime-title {
       font-size: 18px;
       font-weight: 600;
-      color: inherit;
+      color: white;
       text-decoration: none;
-      display: block;
     }
   </style>
 </head>
@@ -66,27 +63,21 @@
     <a href="index.html" style="color:#ff3c3c; font-weight:700; text-decoration:none;">&larr; Back to Home</a>
   </div>
 
-  <div id="animeList">
-    <!-- Anime cards will appear here -->
-  </div>
+  <div id="animeList"></div>
 
   <script>
     const animeList = [
       { id: 1, title: 'Naruto', genre: 'Action' },
-      { id: 2, title: 'One Piece', genre: 'Adventure' },
-      { id: 3, title: 'Your Lie in April', genre: 'Drama' },
-      { id: 4, title: 'One Punch Man', genre: 'Comedy' },
-      { id: 5, title: 'Sword Art Online', genre: 'Fantasy' },
-      { id: 6, title: 'Tokyo Ghoul', genre: 'Horror' },
-      { id: 7, title: 'Death Note', genre: 'Mystery' },
-      { id: 8, title: 'Toradora', genre: 'Romance' },
-      { id: 9, title: 'Steins;Gate', genre: 'Sci-Fi' },
-      { id: 10, title: 'Clannad', genre: 'Slice of Life' },
-      { id: 11, title: 'Bleach', genre: 'Supernatural' },
-      { id: 12, title: 'Haikyuu!!', genre: 'Sports' },
-      { id: 13, title: 'Gundam', genre: 'Mecha' },
-      { id: 14, title: 'Psycho-Pass', genre: 'Thriller' },
-      { id: 15, title: 'Orange', genre: 'Slice of Life' }
+      { id: 2, title: 'Attack on Titan', genre: 'Action' },
+      { id: 3, title: 'My Hero Academia', genre: 'Superhero' },
+      { id: 4, title: 'Demon Slayer', genre: 'Supernatural' },
+      { id: 5, title: 'One Piece', genre: 'Adventure' },
+      { id: 6, title: 'Dragon Ball Z', genre: 'Martial Arts' },
+      { id: 7, title: 'Fullmetal Alchemist', genre: 'Fantasy' },
+      { id: 8, title: 'Tokyo Ghoul', genre: 'Horror' },
+      { id: 9, title: 'Death Note', genre: 'Psychological Thriller' },
+      { id: 10, title: 'Bleach', genre: 'Action' },
+      { id: 11, title: 'Orange', genre: 'Slice of Life' }
     ];
 
     function getGenreFromURL() {
@@ -113,10 +104,7 @@
       filtered.forEach(anime => {
         const card = document.createElement('div');
         card.className = 'anime-card';
-
-        // Link to anime.html with id param
         card.innerHTML = `<a href="anime.html?id=${anime.id}" class="anime-title">${anime.title}</a>`;
-
         listElement.appendChild(card);
       });
     }
