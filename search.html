@@ -64,7 +64,7 @@
   <div id="results">Loading results...</div>
 
   <script>
-    // ✅ Anime data list
+    // ✅ Anime data list (add more if needed)
     const animeList = [
       { id: 1, title: 'Naruto' },
       { id: 2, title: 'Attack on Titan' },
@@ -76,7 +76,7 @@
       { id: 8, title: 'Tokyo Ghoul' },
       { id: 9, title: 'Death Note' },
       { id: 10, title: 'Bleach' },
-      { id: 11, title: 'Orange' } // ✅ Orange added here
+      { id: 11, title: 'Orange' }  // ✅ Added Orange
     ];
 
     // Get search query from URL
@@ -110,7 +110,7 @@
       filtered.forEach(anime => {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = `anime.html?id=${anime.id}`;
+        a.href = `anime.html?id=${anime.id}`; // Link to detail page
         a.textContent = anime.title;
         li.appendChild(a);
         ul.appendChild(li);
