@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/57/39/72/573972cc6ff37b69735d8ee1b26a28a3.jpg') no-repeat center center fixed;
+      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: #ffffff;
     }
@@ -90,25 +90,12 @@
       background-color: #e63636;
     }
 
-    .category-buttons {
+    .popular-heading {
       text-align: center;
       margin: 40px 0 20px;
-    }
-
-    .category-buttons button {
-      background-color: #ff3c3c;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .category-buttons button:hover {
-      background-color: #e63636;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ff3c3c;
     }
 
     .anime-grid {
@@ -152,7 +139,7 @@
     <h1>ANIMEFOLEX</h1>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="category.html">Categories</a>
+      <a href="category.html">English Subbed</a>
     </div>
   </div>
 
@@ -164,37 +151,32 @@
     </form>
   </div>
 
-  <!-- Category Buttons -->
-  <div class="category-buttons">
-    <button onclick="filterCategory('all')">All</button>
-    <button onclick="filterCategory('adventure')">Adventure</button>
-    <button onclick="filterCategory('slice')">Slice of Life</button>
-    <button onclick="filterCategory('action')">Action</button>
-  </div>
+  <!-- Popular Animes Heading -->
+  <h2 class="popular-heading">Popular Animes</h2>
 
   <!-- Anime Grid -->
   <div class="anime-grid" id="animeGrid">
     <!-- Naruto -->
     <a class="anime-card" href="anime.html?id=1" data-category="adventure action">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
+      <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto" />
       <h3>Naruto</h3>
     </a>
 
     <!-- Attack on Titan -->
     <a class="anime-card" href="anime.html?id=2" data-category="action adventure">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Attack_on_Titan_cover.jpg" alt="Attack on Titan">
+      <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Attack_on_Titan_cover.jpg" alt="Attack on Titan" />
       <h3>Attack on Titan</h3>
     </a>
 
     <!-- My Hero Academia -->
     <a class="anime-card" href="anime.html?id=3" data-category="action">
-      <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Boku_no_Hero_Academia_Volume_1.png" alt="My Hero Academia">
+      <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Boku_no_Hero_Academia_Volume_1.png" alt="My Hero Academia" />
       <h3>My Hero Academia</h3>
     </a>
 
     <!-- Orange -->
     <a class="anime-card" href="anime.html?id=11" data-category="slice">
-      <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
+      <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange" />
       <h3>Orange</h3>
     </a>
   </div>
@@ -207,17 +189,6 @@
       if (query !== "") {
         window.location.href = `search.html?q=${encodeURIComponent(query)}`;
       }
-    }
-
-    function filterCategory(category) {
-      const cards = document.querySelectorAll(".anime-card");
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category.includes(category)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
     }
   </script>
 
