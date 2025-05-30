@@ -3,67 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Animefolex - Home</title>
+  <title>Animefolex</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
       background-size: cover;
-      margin: 0;
-      color: white;
-      padding: 20px;
+      color: #ffffff;
     }
+
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
-    h1 {
-      color: #ff3c3c;
-      text-align: center;
-    }
-    .categories {
+
+    nav.navbar {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(26, 26, 26, 0.85);
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
-    .category {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px 25px;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-      transition: background 0.3s;
+
+    nav.navbar h1 {
+      color: #ff3c3c;
+      font-size: 24px;
     }
-    .category:hover {
-      background: #ff3c3c;
+
+    .nav-links {
+      display: flex;
+      align-items: center;
     }
-    .category a {
-      color: white;
+
+    .nav-links a, .dropbtn {
+      color: #ffffff;
       text-decoration: none;
-      font-size: 18px;
+      margin-left: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover, .dropbtn:hover {
+      color: #ff3c3c;
+    }
+
+    /* Dropdown styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(26, 26, 26, 0.85);
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 10;
+      border-radius: 5px;
+      top: 100%;
+      left: 0;
+    }
+
+    .dropdown-content a {
+      color: #ffffff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ff3c3c;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .search-container {
+      margin-top: 120px;
+      text-align: center;
+    }
+
+    .search-container form {
+      display: inline-flex;
+      width: 60%;
+      max-width: 500px;
+    }
+
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      background-color: #ff3c3c;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-container button:hover {
+      background-color: #e63636;
     }
   </style>
 </head>
 <body>
-  <h1>Animefolex Categories</h1>
-  <div class="categories">
-    <div class="category"><a href="category.html?genre=Action">Action</a></div>
-    <div class="category"><a href="category.html?genre=Adventure">Adventure</a></div>
-    <div class="category"><a href="category.html?genre=Drama">Drama</a></div>
-    <div class="category"><a href="category.html?genre=Comedy">Comedy</a></div>
-    <div class="category"><a href="category.html?genre=Fantasy">Fantasy</a></div>
-    <div class="category"><a href="category.html?genre=Horror">Horror</a></div>
-    <div class="category"><a href="category.html?genre=Thriller">Thriller</a></div>
-    <div class="category"><a href="category.html?genre=Romance">Romance</a></div>
-    <div class="category"><a href="category.html?genre=Sci-Fi">Sci-Fi</a></div>
-    <div class="category"><a href="category.html?genre=Slice of Life">Slice of Life</a></div>
-    <div class="category"><a href="category.html?genre=Supernatural">Supernatural</a></div>
-    <div class="category"><a href="category.html?genre=Sports">Sports</a></div>
+
+  <nav class="navbar" role="navigation" aria-label="Primary navigation">
+    <h1>ANIMEFOLEX</h1>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">English Subbed</a>
+
+      <div class="dropdown">
+        <span class="dropbtn">Categories ▼</span>
+        <div class="dropdown-content">
+          <a href="category.html?genre=Action">Action</a>
+          <a href="category.html?genre=Adventure">Adventure</a>
+          <a href="category.html?genre=Comedy">Comedy</a>
+          <a href="category.html?genre=Drama">Drama</a>
+          <a href="category.html?genre=Fantasy">Fantasy</a>
+          <a href="category.html?genre=Horror">Horror</a>
+          <a href="category.html?genre=Mystery">Mystery</a>
+          <a href="category.html?genre=Romance">Romance</a>
+          <a href="category.html?genre=Sci-Fi">Sci-Fi</a>
+          <a href="category.html?genre=Slice of Life">Slice of Life</a>
+          <a href="category.html?genre=Supernatural">Supernatural</a>
+          <a href="category.html?genre=Sports">Sports</a>
+          <a href="category.html?genre=Mecha">Mecha</a>
+          <a href="category.html?genre=Thriller">Thriller</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="search-container">
+    <form onsubmit="return handleSearch(event)">
+      <input type="text" id="searchInput" placeholder="Search for anime..." required aria-label="Search for anime" />
+      <button type="submit" aria-label="Search button">🔍</button>
+    </form>
   </div>
+
+  <script>
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = document.getElementById("searchInput").value.trim();
+      if (query !== "") {
+        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+
 </body>
 </html>
