@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Animefolex - Categories</title>
   <style>
     * {
@@ -13,9 +13,11 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/57/39/72/573972cc6ff37b69735d8ee1b26a28a3.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #ffffff;
+      min-height: 100vh;
+      position: relative;
     }
 
     body::before {
@@ -36,6 +38,9 @@
       background-color: rgba(26, 26, 26, 0.85);
       padding: 15px 30px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .navbar h1 {
@@ -55,24 +60,34 @@
       color: #ff3c3c;
     }
 
-    .category-buttons {
+    .category-heading {
       text-align: center;
-      margin: 30px 0;
+      margin: 40px 0 10px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ff3c3c;
     }
 
-    .category-buttons button {
+    .subcategory-filters {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .subcategory-filters button {
       background-color: #ff3c3c;
       border: none;
       color: white;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 5px;
-      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 18px;
+      margin: 5px 8px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s ease;
+      font-size: 16px;
     }
 
-    .category-buttons button:hover {
+    .subcategory-filters button:hover,
+    .subcategory-filters button.active {
       background-color: #e63636;
     }
 
@@ -92,6 +107,7 @@
       transition: transform 0.3s ease;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      cursor: pointer;
     }
 
     .anime-card:hover {
@@ -112,61 +128,78 @@
 </head>
 <body>
 
+  <!-- Navbar -->
   <div class="navbar">
     <h1>ANIMEFOLEX</h1>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="english-subbed.html">English Subbed</a>
       <a href="category.html">Categories</a>
     </div>
   </div>
 
-  <!-- Category Buttons -->
-  <div class="category-buttons">
-    <button onclick="filterCategory('all')">All</button>
-    <button onclick="filterCategory('adventure')">Adventure</button>
-    <button onclick="filterCategory('slice')">Slice of Life</button>
-    <button onclick="filterCategory('action')">Action</button>
+  <h2 class="category-heading">Categories</h2>
+
+  <!-- Subcategory filters -->
+  <div class="subcategory-filters">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="adventure">Adventure</button>
+    <button class="filter-btn" data-category="action">Action</button>
+    <button class="filter-btn" data-category="slice of life">Slice of Life</button>
   </div>
 
   <!-- Anime Grid -->
   <div class="anime-grid" id="animeGrid">
-    <!-- Naruto (Adventure, Action) -->
+    <!-- Naruto -->
     <a class="anime-card" href="anime.html?id=1" data-category="adventure action">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
+      <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto" />
       <h3>Naruto</h3>
     </a>
 
-    <!-- Attack on Titan (Action, Adventure) -->
+    <!-- Attack on Titan -->
     <a class="anime-card" href="anime.html?id=2" data-category="action adventure">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Attack_on_Titan_cover.jpg" alt="Attack on Titan">
+      <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan" />
       <h3>Attack on Titan</h3>
     </a>
 
-    <!-- My Hero Academia (Action) -->
-    <a class="anime-card" href="anime.html?id=3" data-category="action">
-      <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Boku_no_Hero_Academia_Volume_1.png" alt="My Hero Academia">
+    <!-- My Hero Academia -->
+    <a class="anime-card" href="anime.html?id=3" data-category="action adventure">
+      <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia" />
       <h3>My Hero Academia</h3>
     </a>
 
-    <!-- Orange (Slice of Life) -->
-    <a class="anime-card" href="anime.html?id=11" data-category="slice">
-      <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
+    <!-- Orange -->
+    <a class="anime-card" href="anime.html?id=11" data-category="slice of life">
+      <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange" />
       <h3>Orange</h3>
     </a>
   </div>
 
   <script>
-    function filterCategory(category) {
-      const cards = document.querySelectorAll(".anime-card");
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category.includes(category)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-  </script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const animeGrid = document.getElementById('animeGrid');
+    const animeCards = animeGrid.querySelectorAll('.anime-card');
 
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const category = button.getAttribute('data-category');
+
+        animeCards.forEach(card => {
+          const cardCategories = card.getAttribute('data-category').toLowerCase();
+          if (category === 'all' || cardCategories.includes(category)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+  
 </body>
 </html>
