@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Animefolex - Categories</title>
   <style>
     * {
@@ -55,11 +55,32 @@
       color: #ff3c3c;
     }
 
+    .category-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .category-buttons button {
+      background-color: #ff3c3c;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .category-buttons button:hover {
+      background-color: #e63636;
+    }
+
     .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 20px;
-      padding: 40px;
+      padding: 0 40px 40px;
       max-width: 1200px;
       margin: auto;
     }
@@ -99,29 +120,53 @@
     </div>
   </div>
 
-  <div class="anime-grid">
-    <a class="anime-card" href="anime.html?id=1">
+  <!-- Category Buttons -->
+  <div class="category-buttons">
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('adventure')">Adventure</button>
+    <button onclick="filterCategory('slice')">Slice of Life</button>
+    <button onclick="filterCategory('action')">Action</button>
+  </div>
+
+  <!-- Anime Grid -->
+  <div class="anime-grid" id="animeGrid">
+    <!-- Naruto (Adventure, Action) -->
+    <a class="anime-card" href="anime.html?id=1" data-category="adventure action">
       <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
       <h3>Naruto</h3>
     </a>
 
-    <a class="anime-card" href="anime.html?id=2">
+    <!-- Attack on Titan (Action, Adventure) -->
+    <a class="anime-card" href="anime.html?id=2" data-category="action adventure">
       <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Attack_on_Titan_cover.jpg" alt="Attack on Titan">
       <h3>Attack on Titan</h3>
     </a>
 
-    <a class="anime-card" href="anime.html?id=3">
+    <!-- My Hero Academia (Action) -->
+    <a class="anime-card" href="anime.html?id=3" data-category="action">
       <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Boku_no_Hero_Academia_Volume_1.png" alt="My Hero Academia">
       <h3>My Hero Academia</h3>
     </a>
 
-    <a class="anime-card" href="anime.html?id=11">
+    <!-- Orange (Slice of Life) -->
+    <a class="anime-card" href="anime.html?id=11" data-category="slice">
       <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
       <h3>Orange</h3>
     </a>
-
-    <!-- Add more anime here using the same structure -->
   </div>
+
+  <script>
+    function filterCategory(category) {
+      const cards = document.querySelectorAll(".anime-card");
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category.includes(category)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
