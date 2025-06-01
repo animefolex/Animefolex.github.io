@@ -60,7 +60,7 @@
 
     .watch-button {
       display: inline-block;
-      margin-top: 15px;
+      margin: 10px 8px 0;
       background-color: #ff3c3c;
       color: #fff;
       padding: 10px 20px;
@@ -91,7 +91,8 @@
         description: 'A young ninja strives to become the Hokage.',
         image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
         category: 'Action',
-        season1Url: 'https://gplinks.co/Hkb9D' // ✅ Naruto GPLink added
+        season1Url: 'https://gplinks.co/Hkb9D',
+        season2Url: 'https://gplinks.co/4m78a3'
       },
       {
         id: 2,
@@ -106,7 +107,7 @@
         description: 'A girl receives letters from her future self to prevent regrets.',
         image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg',
         category: 'Slice of Life',
-        season1Url: 'https://gplinks.co/0SCgO9H' // ✅ Orange GPLink updated
+        season1Url: 'https://gplinks.co/0SCgO9H'
       }
     ];
 
@@ -123,6 +124,7 @@
         <p><strong>Category:</strong> ${anime.category}</p>
         <p>${anime.description}</p>
         ${anime.season1Url ? `<a href="${anime.season1Url}" target="_blank" class="watch-button">▶ Watch Season 1</a>` : ''}
+        ${anime.season2Url ? `<a href="${anime.season2Url}" target="_blank" class="watch-button">▶ Watch Season 2</a>` : ''}
       `;
     } else {
       container.innerHTML = `<p>Anime not found.</p>`;
