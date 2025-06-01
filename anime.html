@@ -57,6 +57,22 @@
       display: block;
       margin-bottom: 20px;
     }
+
+    .watch-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff3c3c;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .watch-button:hover {
+      background: #e32f2f;
+    }
   </style>
 </head>
 <body>
@@ -89,7 +105,8 @@
         title: 'Orange',
         description: 'A girl receives letters from her future self to prevent regrets.',
         image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg',
-        category: 'Slice of Life'
+        category: 'Slice of Life',
+        season1Link: 'https://t.me/animefolex1_bot?start=BQADAQADgAQAAtiH4EUZNPIFpVfAvRYE'
       }
     ];
 
@@ -106,6 +123,7 @@
         <h1>${anime.title}</h1>
         <p><strong>Category:</strong> ${anime.category}</p>
         <p>${anime.description}</p>
+        ${anime.season1Link ? `<a href="${anime.season1Link}" class="watch-button" target="_blank">▶ Watch Season 1</a>` : ''}
       `;
     } else {
       container.innerHTML = `<p>Anime not found.</p>`;
