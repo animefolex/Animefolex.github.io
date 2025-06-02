@@ -7,37 +7,29 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
       background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      margin: 0;
+      padding: 0;
     }
 
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.8);
       padding: 20px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: #ff3c3c;
-    }
-
     nav {
-      background: rgba(0, 0, 0, 0.85);
-      padding: 10px 0;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     nav a {
@@ -52,75 +44,74 @@
       color: #ff3c3c;
     }
 
-    .search-box {
+    .search-container {
       text-align: center;
-      margin: 20px 0;
+      margin: 20px;
     }
 
-    .search-box input[type="text"] {
+    .search-container input[type="text"] {
       padding: 10px;
-      width: 60%;
+      font-size: 16px;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
+      width: 200px;
     }
 
-    .search-box button {
-      padding: 10px 20px;
+    .search-container button {
+      padding: 10px 16px;
+      font-size: 16px;
       background-color: #ff3c3c;
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
-      margin-left: 10px;
       cursor: pointer;
     }
 
-    .search-box button:hover {
-      background-color: #e63333;
+    .search-container button:hover {
+      background-color: #e13232;
     }
 
     .anime-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 20px;
       padding: 20px;
       max-width: 1200px;
       margin: auto;
     }
 
-    .anime-item {
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 10px;
+    .anime-card {
+      background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
+      padding: 10px;
       text-align: center;
+      transition: transform 0.3s;
     }
 
-    .anime-item img {
+    .anime-card:hover {
+      transform: scale(1.05);
+    }
+
+    .anime-card img {
       width: 100%;
       border-radius: 8px;
     }
 
-    .anime-title {
+    .anime-card h3 {
       margin-top: 10px;
-      font-weight: bold;
       font-size: 16px;
-    }
-
-    a.anime-link {
-      text-decoration: none;
       color: #fff;
     }
 
-    a.anime-link:hover .anime-title {
-      color: #ff3c3c;
+    a {
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Animefolex</h1>
+    <h1 style="color:#ff3c3c;">Animefolex</h1>
   </header>
 
   <nav>
@@ -129,66 +120,51 @@
     <a href="category.html">Categories</a>
   </nav>
 
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search for your favorite anime...">
-    <button onclick="searchAnime()">Search</button>
+  <div class="search-container">
+    <form action="search.html" method="get">
+      <input type="text" name="q" placeholder="Search Anime..." required>
+      <button type="submit">Search</button>
+    </form>
   </div>
 
-  <h2 style="text-align: center; color: #ff3c3c;">Popular Animes</h2>
-
-  <div class="anime-grid" id="animeGrid">
-    <a class="anime-link" href="anime.html?id=1">
-      <div class="anime-item" data-title="Naruto">
+  <section class="anime-grid">
+    <a href="anime.html?id=1">
+      <div class="anime-card">
         <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
-        <div class="anime-title">Naruto</div>
+        <h3>Naruto</h3>
       </div>
     </a>
-    <a class="anime-link" href="anime.html?id=2">
-      <div class="anime-item" data-title="Attack on Titan">
+    <a href="anime.html?id=2">
+      <div class="anime-card">
         <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan">
-        <div class="anime-title">Attack on Titan</div>
+        <h3>Attack on Titan</h3>
       </div>
     </a>
-    <a class="anime-link" href="anime.html?id=3">
-      <div class="anime-item" data-title="My Hero Academia">
+    <a href="anime.html?id=3">
+      <div class="anime-card">
         <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia">
-        <div class="anime-title">My Hero Academia</div>
+        <h3>My Hero Academia</h3>
       </div>
     </a>
-    <a class="anime-link" href="anime.html?id=4">
-      <div class="anime-item" data-title="Demon Slayer">
-        <img src="https://upload.wikimedia.org/wikipedia/en/d/db/Kimetsu_no_Yaiba_Volume_1.png" alt="Demon Slayer">
-        <div class="anime-title">Demon Slayer</div>
+    <a href="anime.html?id=4">
+      <div class="anime-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Kimetsu_no_Yaiba_volume_1_cover.jpg" alt="Demon Slayer">
+        <h3>Demon Slayer</h3>
       </div>
     </a>
-    <a class="anime-link" href="anime.html?id=5">
-      <div class="anime-item" data-title="One Piece">
-        <img src="https://upload.wikimedia.org/wikipedia/en/2/29/OnePiece78Cover.png" alt="One Piece">
-        <div class="anime-title">One Piece</div>
+    <a href="anime.html?id=5">
+      <div class="anime-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/OnePiece65Cover.png" alt="One Piece">
+        <h3>One Piece</h3>
       </div>
     </a>
-    <a class="anime-link" href="anime.html?id=11">
-      <div class="anime-item" data-title="Orange">
+    <a href="anime.html?id=11">
+      <div class="anime-card">
         <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
-        <div class="anime-title">Orange</div>
+        <h3>Orange</h3>
       </div>
     </a>
-  </div>
-
-  <script>
-    function searchAnime() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const items = document.querySelectorAll('.anime-item');
-
-      items.forEach(item => {
-        const title = item.getAttribute('data-title').toLowerCase();
-        item.parentElement.style.display = title.includes(input) ? 'block' : 'none';
-      });
-    }
-
-    // Also allow typing to filter live
-    document.getElementById('searchInput').addEventListener('input', searchAnime);
-  </script>
+  </section>
 
 </body>
 </html>
