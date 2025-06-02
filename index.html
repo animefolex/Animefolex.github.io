@@ -23,25 +23,26 @@
     }
 
     header {
-      background: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.8);
       padding: 20px;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
-      color: #ff3c3c;
       font-size: 2.5em;
+      color: #ff3c3c;
     }
 
     nav {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 10px 0;
       text-align: center;
-      margin: 20px 0;
     }
 
     nav a {
-      margin: 0 15px;
       color: #fff;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
@@ -49,6 +50,19 @@
 
     nav a:hover {
       color: #ff3c3c;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 60%;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
     }
 
     .anime-grid {
@@ -61,7 +75,7 @@
     }
 
     .anime-item {
-      background: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.75);
       padding: 10px;
       border-radius: 10px;
       text-align: center;
@@ -76,11 +90,11 @@
       margin-top: 10px;
       font-weight: bold;
       font-size: 16px;
-      color: #fff;
     }
 
     a.anime-link {
       text-decoration: none;
+      color: #fff;
     }
 
     a.anime-link:hover .anime-title {
@@ -99,6 +113,10 @@
     <a href="movie.html">Movies</a>
     <a href="category.html">Categories</a>
   </nav>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search for your favorite anime...">
+  </div>
 
   <h2 style="text-align: center; color: #ff3c3c;">Popular Animes</h2>
 
