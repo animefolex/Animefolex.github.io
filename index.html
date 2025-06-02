@@ -52,17 +52,32 @@
       color: #ff3c3c;
     }
 
-    .search-bar {
+    .search-box {
       text-align: center;
       margin: 20px 0;
     }
 
-    .search-bar input {
+    .search-box input[type="text"] {
       padding: 10px;
       width: 60%;
-      border-radius: 5px;
       border: none;
+      border-radius: 5px;
       font-size: 16px;
+    }
+
+    .search-box button {
+      padding: 10px 20px;
+      background-color: #ff3c3c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .search-box button:hover {
+      background-color: #e63333;
     }
 
     .anime-grid {
@@ -114,8 +129,9 @@
     <a href="category.html">Categories</a>
   </nav>
 
-  <div class="search-bar">
+  <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search for your favorite anime...">
+    <button onclick="searchAnime()">Search</button>
   </div>
 
   <h2 style="text-align: center; color: #ff3c3c;">Popular Animes</h2>
@@ -160,16 +176,18 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const animeItems = document.querySelectorAll('.anime-item');
+    function searchAnime() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.anime-item');
 
-    searchInput.addEventListener('input', () => {
-      const filter = searchInput.value.toLowerCase();
-      animeItems.forEach(item => {
+      items.forEach(item => {
         const title = item.getAttribute('data-title').toLowerCase();
-        item.parentElement.style.display = title.includes(filter) ? 'block' : 'none';
+        item.parentElement.style.display = title.includes(input) ? 'block' : 'none';
       });
-    });
+    }
+
+    // Also allow typing to filter live
+    document.getElementById('searchInput').addEventListener('input', searchAnime);
   </script>
 
 </body>
