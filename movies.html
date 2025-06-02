@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movies - Animefolex</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      border-bottom: 2px solid #ff3c3c;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff3c3c;
+    }
+
+    h1 {
+      color: #ff3c3c;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    li {
+      margin-bottom: 15px;
+    }
+
+    a.movie-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    a.movie-link:hover {
+      color: #ff3c3c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="category.html">Categories</a>
+  </nav>
+
+  <h1>Anime Movies</h1>
+
+  <ul>
+    <li><a class="movie-link" href="anime.html?id=1">Naruto Movie</a></li>
+    <li><a class="movie-link" href="anime.html?id=2">Attack on Titan Movie</a></li>
+    <li><a class="movie-link" href="anime.html?id=3">My Hero Academia Movie</a></li>
+    <li><a class="movie-link" href="anime.html?id=4">Demon Slayer Movie</a></li>
+    <li><a class="movie-link" href="anime.html?id=5">One Piece Movie</a></li>
+  </ul>
+
+</body>
+</html>
