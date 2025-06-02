@@ -7,11 +7,11 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
 
     body::before {
@@ -22,76 +22,98 @@
       z-index: -1;
     }
 
+    header {
+      padding: 20px;
+      text-align: center;
+    }
+
     nav {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      border-bottom: 2px solid #ff3c3c;
-      margin-bottom: 30px;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     nav a {
       color: #fff;
+      margin: 0 15px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 18px;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
       color: #ff3c3c;
     }
 
-    h1 {
-      color: #ff3c3c;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-      max-width: 600px;
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
       margin: auto;
     }
 
-    li {
-      margin-bottom: 15px;
+    .movie-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s;
     }
 
-    a.movie-link {
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .movie-card h3 {
+      margin-top: 10px;
+      font-size: 16px;
       color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      transition: color 0.3s ease;
     }
 
-    a.movie-link:hover {
-      color: #ff3c3c;
-      text-decoration: underline;
+    a {
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <h1 style="color:#ff3c3c;">Animefolex - Movies</h1>
+  </header>
+
   <nav>
     <a href="index.html">Home</a>
-    <a href="movies.html">Movies</a>
+    <a href="movie.html">Movies</a>
     <a href="category.html">Categories</a>
   </nav>
 
-  <h1>Anime Movies</h1>
-
-  <ul>
-    <li><a class="movie-link" href="anime.html?id=1">Naruto Movie</a></li>
-    <li><a class="movie-link" href="anime.html?id=2">Attack on Titan Movie</a></li>
-    <li><a class="movie-link" href="anime.html?id=3">My Hero Academia Movie</a></li>
-    <li><a class="movie-link" href="anime.html?id=4">Demon Slayer Movie</a></li>
-    <li><a class="movie-link" href="anime.html?id=5">One Piece Movie</a></li>
-  </ul>
+  <section class="movie-grid">
+    <a href="https://gplinks.co/SampleMovie1" target="_blank">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/Your_Name_poster.png" alt="Your Name">
+        <h3>Your Name</h3>
+      </div>
+    </a>
+    <a href="https://gplinks.co/SampleMovie2" target="_blank">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/A_Silent_Voice_Film_Poster.jpg" alt="A Silent Voice">
+        <h3>A Silent Voice</h3>
+      </div>
+    </a>
+    <a href="https://gplinks.co/SampleMovie3" target="_blank">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/60/Suzume_no_Tojimari_poster.jpg" alt="Suzume">
+        <h3>Suzume</h3>
+      </div>
+    </a>
+    <!-- Add more movies similarly -->
+  </section>
 
 </body>
 </html>
