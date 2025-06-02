@@ -3,125 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search Results - Animefolex</title>
+  <title>Animefolex - Home</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/8a/fa/5e/8afa5e05d104121de465437aabd01818.jpg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
 
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
 
-    h1 {
-      color: #ff3c3c;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin-bottom: 12px;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #ff3c3c;
-      text-decoration: underline;
+    header {
+      padding: 20px;
+      text-align: center;
     }
 
     nav {
-      margin-bottom: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #ff3c3c;
+    }
+
+    .search-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-container input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    .search-container button {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #ff3c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .search-container button:hover {
+      background-color: #e13232;
+    }
+
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .anime-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .anime-card:hover {
+      transform: scale(1.05);
+    }
+
+    .anime-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .anime-card h3 {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <h1 style="color:#ff3c3c;">Animefolex</h1>
+  </header>
+
   <nav>
-    <a href="index.html" style="color:#ff3c3c; font-weight:700;">&larr; Back to Home</a>
+    <a href="index.html">Home</a>
+    <a href="movie.html">Movies</a>
+    <a href="category.html">Categories</a>
   </nav>
 
-  <h1>Search Results</h1>
-  <div id="results">Loading results...</div>
+  <div class="search-container">
+    <form action="search.html" method="get">
+      <input type="text" name="q" placeholder="Search Anime..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
 
-  <script>
-    // ✅ Anime data list
-    const animeList = [
-      { id: 1, title: 'Naruto' },
-      { id: 2, title: 'Attack on Titan' },
-      { id: 3, title: 'My Hero Academia' },
-      { id: 4, title: 'Demon Slayer' },
-      { id: 5, title: 'One Piece' },
-      { id: 6, title: 'Dragon Ball Z' },
-      { id: 7, title: 'Fullmetal Alchemist' },
-      { id: 8, title: 'Tokyo Ghoul' },
-      { id: 9, title: 'Death Note' },
-      { id: 10, title: 'Bleach' },
-      { id: 11, title: 'Orange' } // ✅ Orange added here
-    ];
-
-    // Get search query from URL
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-
-    // Display matching results
-    function showResults() {
-      const query = getQueryParam('q');
-      const resultsDiv = document.getElementById('results');
-
-      if (!query) {
-        resultsDiv.textContent = 'No search query provided.';
-        return;
-      }
-
-      const lowerQuery = query.toLowerCase();
-
-      const filtered = animeList.filter(anime =>
-        anime.title.toLowerCase().includes(lowerQuery)
-      );
-
-      if (filtered.length === 0) {
-        resultsDiv.textContent = `No results found for "${query}".`;
-        return;
-      }
-
-      const ul = document.createElement('ul');
-      filtered.forEach(anime => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `anime.html?id=${anime.id}`;
-        a.textContent = anime.title;
-        li.appendChild(a);
-        ul.appendChild(li);
-      });
-
-      resultsDiv.innerHTML = '';
-      resultsDiv.appendChild(ul);
-    }
-
-    showResults();
-  </script>
+  <section class="anime-grid">
+    <a href="anime.html?id=1">
+      <div class="anime-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
+        <h3>Naruto</h3>
+      </div>
+    </a>
+    <a href="anime.html?id=2">
+      <div class="anime-card">
+        <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan">
+        <h3>Attack on Titan</h3>
+      </div>
+    </a>
+    <a href="anime.html?id=3">
+      <div class="anime-card">
+        <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia">
+        <h3>My Hero Academia</h3>
+      </div>
+    </a>
+    <a href="anime.html?id=4">
+      <div class="anime-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Kimetsu_no_Yaiba_volume_1_cover.jpg" alt="Demon Slayer">
+        <h3>Demon Slayer</h3>
+      </div>
+    </a>
+    <a href="anime.html?id=5">
+      <div class="anime-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/OnePiece65Cover.png" alt="One Piece">
+        <h3>One Piece</h3>
+      </div>
+    </a>
+    <a href="anime.html?id=11">
+      <div class="anime-card">
+        <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
+        <h3>Orange</h3>
+      </div>
+    </a>
+  </section>
 
 </body>
 </html>
