@@ -7,93 +7,120 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/8a/fa/5e/8afa5e05d104121de465437aabd01818.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
 
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0,0,0,0.6);
       z-index: -1;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 10px 20px;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
+    h1 {
       color: #ff3c3c;
+      margin-bottom: 20px;
     }
 
-    nav a {
-      margin-left: 20px;
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: #fff;
       text-decoration: none;
-      color: white;
       font-weight: 600;
-    }
-
-    nav a:hover {
-      color: #ff3c3c;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      color: #ff3c3c;
-      text-align: center;
-    }
-
-    .result {
       font-size: 18px;
-      text-align: center;
-      margin-top: 20px;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ff3c3c;
+      text-decoration: underline;
+    }
+
+    nav {
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">ANIMEFOLEX</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="movies.html">Movies</a>
-      <a href="category.html">Categories</a>
-    </nav>
-  </header>
+  <nav>
+    <a href="index.html" style="color:#ff3c3c; font-weight:700;">&larr; Back to Home</a>
+  </nav>
 
-  <div class="container">
-    <h2>Search Results</h2>
-    <div class="result" id="searchResult"></div>
-  </div>
+  <h1>Search Results</h1>
+  <div id="results">Loading results...</div>
 
   <script>
-    // Get the search query from URL
-    const params = new URLSearchParams(window.location.search);
-    const query = params.get('q');
+    // ✅ Anime data list
+    const animeList = [
+      { id: 1, title: 'Naruto' },
+      { id: 2, title: 'Attack on Titan' },
+      { id: 3, title: 'My Hero Academia' },
+      { id: 4, title: 'Demon Slayer' },
+      { id: 5, title: 'One Piece' },
+      { id: 6, title: 'Dragon Ball Z' },
+      { id: 7, title: 'Fullmetal Alchemist' },
+      { id: 8, title: 'Tokyo Ghoul' },
+      { id: 9, title: 'Death Note' },
+      { id: 10, title: 'Bleach' },
+      { id: 11, title: 'Orange' } // ✅ Orange added here
+    ];
 
-    const resultContainer = document.getElementById('searchResult');
-
-    if (query) {
-      resultContainer.innerHTML = `You searched for: <strong>${decodeURIComponent(query)}</strong>`;
-      // Here, you could add logic to filter and show results from your anime list
-    } else {
-      resultContainer.innerHTML = `No search query found.`;
+    // Get search query from URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
     }
+
+    // Display matching results
+    function showResults() {
+      const query = getQueryParam('q');
+      const resultsDiv = document.getElementById('results');
+
+      if (!query) {
+        resultsDiv.textContent = 'No search query provided.';
+        return;
+      }
+
+      const lowerQuery = query.toLowerCase();
+
+      const filtered = animeList.filter(anime =>
+        anime.title.toLowerCase().includes(lowerQuery)
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.textContent = `No results found for "${query}".`;
+        return;
+      }
+
+      const ul = document.createElement('ul');
+      filtered.forEach(anime => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `anime.html?id=${anime.id}`;
+        a.textContent = anime.title;
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+
+      resultsDiv.innerHTML = '';
+      resultsDiv.appendChild(ul);
+    }
+
+    showResults();
   </script>
 
 </body>
