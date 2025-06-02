@@ -115,49 +115,62 @@
   </nav>
 
   <div class="search-bar">
-    <input type="text" placeholder="Search for your favorite anime...">
+    <input type="text" id="searchInput" placeholder="Search for your favorite anime...">
   </div>
 
   <h2 style="text-align: center; color: #ff3c3c;">Popular Animes</h2>
 
-  <div class="anime-grid">
+  <div class="anime-grid" id="animeGrid">
     <a class="anime-link" href="anime.html?id=1">
-      <div class="anime-item">
+      <div class="anime-item" data-title="Naruto">
         <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto">
         <div class="anime-title">Naruto</div>
       </div>
     </a>
     <a class="anime-link" href="anime.html?id=2">
-      <div class="anime-item">
+      <div class="anime-item" data-title="Attack on Titan">
         <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan">
         <div class="anime-title">Attack on Titan</div>
       </div>
     </a>
     <a class="anime-link" href="anime.html?id=3">
-      <div class="anime-item">
+      <div class="anime-item" data-title="My Hero Academia">
         <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia">
         <div class="anime-title">My Hero Academia</div>
       </div>
     </a>
     <a class="anime-link" href="anime.html?id=4">
-      <div class="anime-item">
+      <div class="anime-item" data-title="Demon Slayer">
         <img src="https://upload.wikimedia.org/wikipedia/en/d/db/Kimetsu_no_Yaiba_Volume_1.png" alt="Demon Slayer">
         <div class="anime-title">Demon Slayer</div>
       </div>
     </a>
     <a class="anime-link" href="anime.html?id=5">
-      <div class="anime-item">
+      <div class="anime-item" data-title="One Piece">
         <img src="https://upload.wikimedia.org/wikipedia/en/2/29/OnePiece78Cover.png" alt="One Piece">
         <div class="anime-title">One Piece</div>
       </div>
     </a>
     <a class="anime-link" href="anime.html?id=11">
-      <div class="anime-item">
+      <div class="anime-item" data-title="Orange">
         <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange">
         <div class="anime-title">Orange</div>
       </div>
     </a>
   </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const animeItems = document.querySelectorAll('.anime-item');
+
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      animeItems.forEach(item => {
+        const title = item.getAttribute('data-title').toLowerCase();
+        item.parentElement.style.display = title.includes(filter) ? 'block' : 'none';
+      });
+    });
+  </script>
 
 </body>
 </html>
