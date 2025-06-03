@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Details - Animefolex</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #ff3c3c;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      max-width: 400px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ff3c3c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #e63232;
+    }
+
+    .movie-detail {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+
+    .poster {
+      flex: 1 1 300px;
+    }
+
+    .poster img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .info {
+      flex: 2 1 400px;
+    }
+
+    .info h2 {
+      color: #ff3c3c;
+      margin-top: 0;
+    }
+
+    .info p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .info strong {
+      color: #ff3c3c;
+    }
+
+    .watch-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 25px;
+      background-color: #ff3c3c;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+
+    .watch-btn:hover {
+      background-color: #e63232;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="color:#ff3c3c;">Animefolex - Movie Details</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="categoriesmovie.html">Categories</a>
+  </nav>
+
+  <div class="search-bar">
+    <form action="searchmovies.html" method="get">
+      <input type="text" name="q" placeholder="Search for anime movies...">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- Movie 1 -->
+  <section class="movie-detail">
+    <div class="poster">
+      <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name">
+    </div>
+    <div class="info">
+      <h2>Your Name (Kimi no Na wa)</h2>
+      <p><strong>Genre:</strong> Romance, Fantasy, Drama</p>
+      <p><strong>Release Date:</strong> August 26, 2016</p>
+      <p><strong>Description:</strong> Two teenagers share a magical connection when they suddenly start swapping bodies. As they form a bond, they try to meet each other, changing their lives forever.</p>
+      <a href="https://gplinks.co/SampleMovie1" class="watch-btn" target="_blank">Watch / Download</a>
+    </div>
+  </section>
+
+  <!-- Movie 2 -->
+  <section class="movie-detail">
+    <div class="poster">
+      <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice">
+    </div>
+    <div class="info">
+      <h2>A Silent Voice (Koe no Katachi)</h2>
+      <p><strong>Genre:</strong> Drama, School, Shounen</p>
+      <p><strong>Release Date:</strong> September 17, 2016</p>
+      <p><strong>Description:</strong> A former bully tries to make amends with a deaf girl he tormented in elementary school. A deeply emotional story about redemption and forgiveness.</p>
+      <a href="https://gplinks.co/SampleMovie2" class="watch-btn" target="_blank">Watch / Download</a>
+    </div>
+  </section>
+
+  <!-- Movie 3 -->
+  <section class="movie-detail">
+    <div class="poster">
+      <img src="https://i.pinimg.com/736x/92/97/b4/9297b4adcfbf68db04b3842dc14e204a.jpg" alt="Suzume">
+    </div>
+    <div class="info">
+      <h2>Suzume</h2>
+      <p><strong>Genre:</strong> Adventure, Fantasy, Drama</p>
+      <p><strong>Release Date:</strong> November 11, 2022</p>
+      <p><strong>Description:</strong> A girl named Suzume helps close mystical doors that are causing natural disasters across Japan, while searching for a way to bring peace and healing to her own heart.</p>
+      <a href="https://gplinks.co/SampleMovie3" class="watch-btn" target="_blank">Watch / Download</a>
+    </div>
+  </section>
+
+</body>
+</html>
