@@ -11,9 +11,8 @@
       background-size: cover;
       color: #fff;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -21,174 +20,106 @@
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-
-    header {
-      text-align: center;
-      padding: 20px;
+    a {
+      color: #ff3c3c;
+      font-weight: bold;
+      text-decoration: none;
     }
-
-    nav {
+    .movie-container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(26, 26, 26, 0.85);
+      padding: 20px;
+      border-radius: 10px;
       text-align: center;
+    }
+    .movie-container img {
+      max-width: 300px;
+      border-radius: 8px;
       margin-bottom: 20px;
     }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    nav a:hover {
+    h1 {
       color: #ff3c3c;
+      margin-bottom: 10px;
     }
-
-    .search-bar {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .search-bar input[type="text"] {
-      padding: 10px;
-      width: 60%;
-      max-width: 400px;
-      border: none;
-      border-radius: 20px;
-      font-size: 16px;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      border: none;
-      border-radius: 20px;
-      background-color: #ff3c3c;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .search-bar button:hover {
-      background-color: #e63232;
-    }
-
-    .movie-detail {
-      max-width: 1000px;
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      margin-bottom: 40px;
-    }
-
-    .poster {
-      flex: 1 1 300px;
-    }
-
-    .poster img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .info {
-      flex: 2 1 400px;
-    }
-
-    .info h2 {
-      color: #ff3c3c;
-      margin-top: 0;
-    }
-
-    .info p {
+    p {
       font-size: 16px;
       line-height: 1.6;
     }
-
-    .info strong {
-      color: #ff3c3c;
+    .back-link {
+      display: block;
+      margin-bottom: 20px;
     }
-
-    .watch-btn {
+    .watch-button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 10px 25px;
+      margin: 10px 8px;
+      padding: 10px 18px;
       background-color: #ff3c3c;
       color: white;
       text-decoration: none;
+      border-radius: 5px;
       font-weight: bold;
-      border-radius: 25px;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
     }
-
-    .watch-btn:hover {
-      background-color: #e63232;
+    .watch-button:hover {
+      background-color: #e03131;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1 style="color:#ff3c3c;">Animefolex - Movie Details</h1>
-  </header>
+  <a class="back-link" href="movies.html">&larr; Back to Movies</a>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="movies.html">Movies</a>
-    <a href="categoriesmovie.html">Categories</a>
-  </nav>
-
-  <div class="search-bar">
-    <form action="searchmovies.html" method="get">
-      <input type="text" name="q" placeholder="Search for anime movies...">
-      <button type="submit">Search</button>
-    </form>
+  <div class="movie-container" id="movieDetails">
+    Loading movie details...
   </div>
 
-  <!-- Movie 1 -->
-  <section class="movie-detail">
-    <div class="poster">
-      <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name">
-    </div>
-    <div class="info">
-      <h2>Your Name (Kimi no Na wa)</h2>
-      <p><strong>Genre:</strong> Romance, Fantasy, Drama</p>
-      <p><strong>Release Date:</strong> August 26, 2016</p>
-      <p><strong>Description:</strong> Two teenagers share a magical connection when they suddenly start swapping bodies. As they form a bond, they try to meet each other, changing their lives forever.</p>
-      <a href="https://gplinks.co/SampleMovie1" class="watch-btn" target="_blank">Watch / Download</a>
-    </div>
-  </section>
+  <script>
+    const movieData = [
+      {
+        id: 1,
+        title: 'Your Name',
+        description: 'A high school boy and girl discover they are swapping bodies intermittently.',
+        image: 'https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg',
+        category: 'Romance/Fantasy',
+        watchUrl: 'https://gplinks.co/SampleMovie1'
+      },
+      {
+        id: 2,
+        title: 'A Silent Voice',
+        description: 'A former bully tries to make amends with a deaf girl he once tormented.',
+        image: 'https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg',
+        category: 'Drama/Romance',
+        watchUrl: 'https://gplinks.co/SampleMovie2'
+      },
+      {
+        id: 3,
+        title: 'Suzume',
+        description: 'A girl embarks on a journey to close mysterious doors causing disasters.',
+        image: 'https://i.pinimg.com/736x/92/97/b4/9297b4adcfbf68db04b3842dc14e204a.jpg',
+        category: 'Adventure/Fantasy',
+        watchUrl: 'https://gplinks.co/SampleMovie3'
+      }
+      // Add more movies here as needed
+    ];
 
-  <!-- Movie 2 -->
-  <section class="movie-detail">
-    <div class="poster">
-      <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice">
-    </div>
-    <div class="info">
-      <h2>A Silent Voice (Koe no Katachi)</h2>
-      <p><strong>Genre:</strong> Drama, School, Shounen</p>
-      <p><strong>Release Date:</strong> September 17, 2016</p>
-      <p><strong>Description:</strong> A former bully tries to make amends with a deaf girl he tormented in elementary school. A deeply emotional story about redemption and forgiveness.</p>
-      <a href="https://gplinks.co/SampleMovie2" class="watch-btn" target="_blank">Watch / Download</a>
-    </div>
-  </section>
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = parseInt(urlParams.get('id'));
+    const movie = movieData.find(item => item.id === movieId);
+    const container = document.getElementById('movieDetails');
 
-  <!-- Movie 3 -->
-  <section class="movie-detail">
-    <div class="poster">
-      <img src="https://i.pinimg.com/736x/92/97/b4/9297b4adcfbf68db04b3842dc14e204a.jpg" alt="Suzume">
-    </div>
-    <div class="info">
-      <h2>Suzume</h2>
-      <p><strong>Genre:</strong> Adventure, Fantasy, Drama</p>
-      <p><strong>Release Date:</strong> November 11, 2022</p>
-      <p><strong>Description:</strong> A girl named Suzume helps close mystical doors that are causing natural disasters across Japan, while searching for a way to bring peace and healing to her own heart.</p>
-      <a href="https://gplinks.co/SampleMovie3" class="watch-btn" target="_blank">Watch / Download</a>
-    </div>
-  </section>
+    if (movie) {
+      container.innerHTML = `
+        <img src="${movie.image}" alt="${movie.title}">
+        <h1>${movie.title}</h1>
+        <p><strong>Category:</strong> ${movie.category}</p>
+        <p>${movie.description}</p>
+        <a href="${movie.watchUrl}" target="_blank" class="watch-button">▶ Watch Movie</a>
+      `;
+    } else {
+      container.innerHTML = `<p>Movie not found.</p>`;
+    }
+  </script>
 
 </body>
 </html>
