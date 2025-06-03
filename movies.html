@@ -13,7 +13,6 @@
       margin: 0;
       padding: 0;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -21,17 +20,14 @@
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-
     header {
       padding: 20px;
       text-align: center;
     }
-
     nav {
       text-align: center;
       margin-bottom: 20px;
     }
-
     nav a {
       color: #fff;
       margin: 0 15px;
@@ -39,20 +35,16 @@
       font-weight: bold;
       font-size: 18px;
     }
-
     nav a:hover {
       color: #ff3c3c;
     }
-
     nav a.active {
       color: #ff3c3c;
     }
-
     .search-bar {
       text-align: center;
       margin-bottom: 20px;
     }
-
     .search-bar input[type="text"] {
       padding: 10px;
       width: 60%;
@@ -61,7 +53,6 @@
       border-radius: 20px;
       font-size: 16px;
     }
-
     .search-bar button {
       padding: 10px 20px;
       margin-left: 10px;
@@ -72,11 +63,9 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .search-bar button:hover {
       background-color: #e63232;
     }
-
     .movie-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -85,7 +74,6 @@
       max-width: 1200px;
       margin: auto;
     }
-
     .movie-card {
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
@@ -93,24 +81,21 @@
       text-align: center;
       transition: transform 0.3s;
     }
-
     .movie-card:hover {
       transform: scale(1.05);
     }
-
     .movie-card img {
       width: 100%;
       border-radius: 8px;
     }
-
     .movie-card h3 {
       margin-top: 10px;
       font-size: 16px;
       color: #fff;
     }
-
     a {
       text-decoration: none;
+      color: inherit;
     }
   </style>
 </head>
@@ -134,19 +119,19 @@
   </div>
 
   <section class="movie-grid">
-    <a href="https://gplinks.co/SampleMovie1" target="_blank">
+    <a href="movieDetails.html?id=1">
       <div class="movie-card">
         <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name">
         <h3>Your Name</h3>
       </div>
     </a>
-    <a href="https://gplinks.co/SampleMovie2" target="_blank">
+    <a href="movieDetails.html?id=2">
       <div class="movie-card">
         <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice">
         <h3>A Silent Voice</h3>
       </div>
     </a>
-    <a href="https://gplinks.co/SampleMovie3" target="_blank">
+    <a href="movieDetails.html?id=3">
       <div class="movie-card">
         <img src="https://i.pinimg.com/736x/92/97/b4/9297b4adcfbf68db04b3842dc14e204a.jpg" alt="Suzume">
         <h3>Suzume</h3>
