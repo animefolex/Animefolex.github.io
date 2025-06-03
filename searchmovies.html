@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Movies - Animefolex</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #ff3c3c;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      max-width: 400px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ff3c3c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #e63232;
+    }
+
+    .results {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .movie-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .movie-card img {
+      width: 120px;
+      border-radius: 8px;
+    }
+
+    .movie-card h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .movie-card a {
+      color: #ff3c3c;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .movie-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .movie-card img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="color:#ff3c3c;">Animefolex - Search Movies</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="category.html">Categories</a>
+  </nav>
+
+  <div class="search-bar">
+    <form action="searchmovies.html" method="get">
+      <input type="text" name="q" placeholder="Search for anime movies...">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <section class="results">
+    <!-- Dummy search results -->
+    <div class="movie-card">
+      <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name">
+      <div>
+        <h3>Your Name</h3>
+        <a href="https://gplinks.co/SampleMovie1" target="_blank">Watch Now</a>
+      </div>
+    </div>
+
+    <div class="movie-card">
+      <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice">
+      <div>
+        <h3>A Silent Voice</h3>
+        <a href="https://gplinks.co/SampleMovie2" target="_blank">Watch Now</a>
+      </div>
+    </div>
+
+    <!-- Add more result cards as needed -->
+  </section>
+
+</body>
+</html>
