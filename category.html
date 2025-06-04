@@ -60,37 +60,73 @@
       color: #ff3c3c;
     }
 
-    .category-heading {
-      text-align: center;
-      margin: 40px 0 10px;
-      font-size: 28px;
-      font-weight: 700;
-      color: #ff3c3c;
-    }
-
-    .subcategory-filters {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .subcategory-filters button {
+    /* Categories toggle button */
+    .categories-toggle {
       background-color: #ff3c3c;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 12px 24px;
+      margin: 30px auto 10px;
+      display: block;
+      border-radius: 30px;
+      cursor: pointer;
+      max-width: 220px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .categories-toggle:hover {
+      background-color: #e63636;
+    }
+
+    /* Genre list container */
+    .genre-list {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      max-height: 0;
+      opacity: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .genre-list.show {
+      max-height: 500px; /* enough for all buttons */
+      opacity: 1;
+    }
+
+    /* Genre buttons */
+    .genre-btn {
+      background-color: rgba(255, 60, 60, 0.8);
       border: none;
       color: white;
       font-weight: 600;
       padding: 10px 18px;
-      margin: 5px 8px;
+      margin: 6px 8px;
       border-radius: 25px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-size: 16px;
+      display: inline-block;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      max-width: 140px;
+      text-align: center;
     }
 
-    .subcategory-filters button:hover,
-    .subcategory-filters button.active {
+    .genre-btn:hover,
+    .genre-btn.active {
       background-color: #e63636;
     }
 
+    /* Anime Grid */
     .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -124,6 +160,78 @@
       padding: 10px;
       font-size: 18px;
     }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 20px;
+      }
+      .navbar h1 {
+        font-size: 20px;
+      }
+      .nav-links a {
+        margin-left: 15px;
+        font-size: 14px;
+      }
+      .categories-toggle {
+        font-size: 18px;
+        max-width: 180px;
+        padding: 10px 20px;
+      }
+      .genre-btn {
+        max-width: 120px;
+        font-size: 14px;
+        padding: 8px 14px;
+        margin: 5px 6px;
+      }
+      .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        padding: 0 20px 30px;
+      }
+      .anime-card img {
+        height: 200px;
+      }
+      .anime-card h3 {
+        font-size: 16px;
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .nav-links a {
+        margin-left: 0;
+        margin-right: 15px;
+        font-size: 13px;
+      }
+      .categories-toggle {
+        font-size: 16px;
+        max-width: 100%;
+        padding: 10px 16px;
+      }
+      .genre-btn {
+        max-width: 100%;
+        flex-basis: 45%;
+        font-size: 14px;
+        padding: 8px 12px;
+        margin: 4px 6px;
+      }
+      .anime-grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 10px 30px;
+      }
+      .anime-card img {
+        height: 180px;
+      }
+      .anime-card h3 {
+        font-size: 15px;
+        padding: 7px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -137,14 +245,21 @@
     </div>
   </div>
 
-  <h2 class="category-heading">Categories</h2>
+  <!-- Categories toggle button -->
+  <button class="categories-toggle" id="toggleGenresBtn">Show Categories ▼</button>
 
-  <!-- Subcategory filters -->
-  <div class="subcategory-filters">
-    <button class="filter-btn active" data-category="all">All</button>
-    <button class="filter-btn" data-category="adventure">Adventure</button>
-    <button class="filter-btn" data-category="action">Action</button>
-    <button class="filter-btn" data-category="slice of life">Slice of Life</button>
+  <!-- Genre list -->
+  <div class="genre-list" id="genreList">
+    <button class="genre-btn active" data-category="all">All</button>
+    <button class="genre-btn" data-category="adventure">Adventure</button>
+    <button class="genre-btn" data-category="action">Action</button>
+    <button class="genre-btn" data-category="slice of life">Slice of Life</button>
+    <button class="genre-btn" data-category="comedy">Comedy</button>
+    <button class="genre-btn" data-category="drama">Drama</button>
+    <button class="genre-btn" data-category="fantasy">Fantasy</button>
+    <button class="genre-btn" data-category="romance">Romance</button>
+    <button class="genre-btn" data-category="sci-fi">Sci-Fi</button>
+    <button class="genre-btn" data-category="thriller">Thriller</button>
   </div>
 
   <!-- Anime Grid -->
@@ -156,49 +271,65 @@
     </a>
 
     <!-- Attack on Titan -->
-    <a class="anime-card" href="anime.html?id=2" data-category="action adventure">
+    <a class="anime-card" href="anime.html?id=2" data-category="action adventure thriller">
       <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan" />
       <h3>Attack on Titan</h3>
     </a>
 
     <!-- My Hero Academia -->
-    <a class="anime-card" href="anime.html?id=3" data-category="action adventure">
+    <a class="anime-card" href="anime.html?id=3" data-category="action adventure fantasy">
       <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia" />
       <h3>My Hero Academia</h3>
     </a>
 
     <!-- Orange -->
-    <a class="anime-card" href="anime.html?id=11" data-category="slice of life">
+    <a class="anime-card" href="anime.html?id=11" data-category="slice of life drama romance">
       <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange" />
       <h3>Orange</h3>
     </a>
   </div>
 
   <script>
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const toggleBtn = document.getElementById('toggleGenresBtn');
+    const genreList = document.getElementById('genreList');
+    const genreButtons = genreList.querySelectorAll('.genre-btn');
     const animeGrid = document.getElementById('animeGrid');
     const animeCards = animeGrid.querySelectorAll('.anime-card');
 
-    filterButtons.forEach(button => {
+    // Toggle genre list visibility
+    toggleBtn.addEventListener('click', () => {
+      const isShown = genreList.classList.toggle('show');
+      toggleBtn.textContent = isShown ? 'Hide Categories ▲' : 'Show Categories ▼';
+    });
+
+    // Filter function
+    function filterByCategory(category) {
+      animeCards.forEach(card => {
+        const cardCategories = card.getAttribute('data-category').toLowerCase();
+        if (category === 'all' || cardCategories.includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Handle genre button clicks
+    genreButtons.forEach(button => {
       button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
+        // Remove active from all
+        genreButtons.forEach(btn => btn.classList.remove('active'));
+        // Set active to clicked
         button.classList.add('active');
 
         const category = button.getAttribute('data-category');
-
-        animeCards.forEach(card => {
-          const cardCategories = card.getAttribute('data-category').toLowerCase();
-          if (category === 'all' || cardCategories.includes(category)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        filterByCategory(category);
       });
     });
+
+    // Initially show all
+    filterByCategory('all');
   </script>
-  
+
 </body>
 </html>
