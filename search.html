@@ -2,126 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search Results - Animefolex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animefolex - Search Results</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/57/39/72/573972cc6ff37b69735d8ee1b26a28a3.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
+      min-height: 100vh;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      position: relative;
     }
-
     body::before {
-      content: '';
+      content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.6);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
       z-index: -1;
     }
-
     .navbar {
-      background-color: rgba(0,0,0,0.8);
-      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background-color: rgba(26, 26, 26, 0.85);
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
     .navbar h1 {
       color: #ff3c3c;
       font-size: 24px;
     }
-
     .nav-links a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       margin-left: 20px;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
-
-    .search-bar {
-      margin: 30px auto;
-      max-width: 600px;
+    .nav-links a:hover {
+      color: #ff3c3c;
+    }
+    form.search-form {
+      max-width: 500px;
+      margin: 20px auto;
       display: flex;
-      justify-content: center;
     }
-
-    .search-bar input {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 30px 0 0 30px;
+    form.search-form input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
       font-size: 16px;
+      border: none;
+      border-radius: 25px 0 0 25px;
       outline: none;
     }
-
-    .search-bar button {
-      padding: 12px 20px;
+    form.search-form button {
       background-color: #ff3c3c;
       border: none;
-      border-radius: 0 30px 30px 0;
+      padding: 0 20px;
       color: white;
+      font-weight: 700;
+      border-radius: 0 25px 25px 0;
       cursor: pointer;
+      transition: background-color 0.3s ease;
       font-size: 16px;
     }
-
+    form.search-form button:hover {
+      background-color: #e63636;
+    }
     .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 20px;
-      padding: 0 40px 40px;
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto 40px;
+      padding: 0 20px;
     }
-
     .anime-card {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0,0,0,0.7);
       border-radius: 10px;
       overflow: hidden;
-      transition: transform 0.3s ease;
-      text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      text-align: center;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
-
     .anime-card:hover {
       transform: scale(1.05);
     }
-
     .anime-card img {
       width: 100%;
       height: 250px;
       object-fit: cover;
     }
-
     .anime-card h3 {
       padding: 10px;
       font-size: 18px;
+      color: #fff;
+      margin: 0;
     }
-
+    .no-results {
+      color: #ff3c3c;
+      text-align: center;
+      font-size: 22px;
+      margin-top: 40px;
+      font-weight: 700;
+    }
     @media (max-width: 768px) {
-      .search-bar {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .search-bar input, .search-bar button {
-        border-radius: 30px;
-        margin: 5px 0;
-      }
-
       .anime-card img {
         height: 200px;
       }
-
       .anime-card h3 {
         font-size: 16px;
+      }
+      form.search-form {
+        max-width: 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      .anime-card img {
+        height: 180px;
+      }
+      .anime-card h3 {
+        font-size: 15px;
       }
     }
   </style>
@@ -136,52 +144,132 @@
     </div>
   </div>
 
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for an anime..." />
-    <button onclick="searchAnime()">Search</button>
-  </div>
+  <form class="search-form" action="search.html" method="GET" role="search" aria-label="Anime search form">
+    <input type="text" name="q" id="searchInput" placeholder="Search anime..." autocomplete="off" />
+    <button type="submit">Search</button>
+  </form>
 
-  <div class="anime-grid" id="searchResults">
-    <!-- Anime results will appear here -->
-  </div>
+  <div class="anime-grid" id="animeGrid"></div>
+  <div class="no-results" id="noResults" style="display:none;">No results found.</div>
 
-  <script>
-    const animes = [
-      { title: "Naruto", image: "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg", link: "anime.html?id=1" },
-      { title: "Attack on Titan", image: "https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg", link: "anime.html?id=2" },
-      { title: "My Hero Academia", image: "https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg", link: "anime.html?id=3" },
-      { title: "Orange", image: "https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg", link: "anime.html?id=11" },
-      // New Animes
-      { title: "Jujutsu Kaisen", image: "https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg", link: "anime.html?id=101" },
-      { title: "One Piece", image: "https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg", link: "anime.html?id=102" },
-      { title: "Demon Slayer", image: "https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg", link: "anime.html?id=103" },
-      { title: "Dragon Ball", image: "https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg", link: "anime.html?id=104" }
-    ];
-
-    function searchAnime() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const resultsContainer = document.getElementById("searchResults");
-      resultsContainer.innerHTML = "";
-
-      const filtered = animes.filter(anime => anime.title.toLowerCase().includes(input));
-
-      if (filtered.length === 0) {
-        resultsContainer.innerHTML = "<p style='text-align:center; font-size:18px;'>No anime found.</p>";
-        return;
-      }
-
-      filtered.forEach(anime => {
-        const card = document.createElement("a");
-        card.className = "anime-card";
-        card.href = anime.link;
-        card.innerHTML = `
-          <img src="${anime.image}" alt="${anime.title}">
-          <h3>${anime.title}</h3>
-        `;
-        resultsContainer.appendChild(card);
-      });
+<script>
+  // Your anime data including old and new animes, no GP links on new ones, with descriptions
+  const animes = [
+    {
+      id: 1,
+      title: "Naruto",
+      img: "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg",
+      description: "Follow Naruto Uzumaki, a young ninja with a sealed demon fox inside him, on his quest to become Hokage.",
+      category: "adventure action"
+    },
+    {
+      id: 2,
+      title: "Attack on Titan",
+      img: "https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg",
+      description: "Humanity fights for survival against giant humanoid Titans in a post-apocalyptic world.",
+      category: "action adventure thriller"
+    },
+    {
+      id: 3,
+      title: "My Hero Academia",
+      img: "https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg",
+      description: "In a world where people have superpowers called quirks, a boy dreams of becoming the greatest hero.",
+      category: "action adventure fantasy"
+    },
+    {
+      id: 11,
+      title: "Orange",
+      img: "https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg",
+      description: "A touching story of regret and second chances centered on a girl receiving letters from her future self.",
+      category: "slice of life drama romance"
+    },
+    // New animes without GP links, with descriptions
+    {
+      id: 12,
+      title: "Jujutsu Kaisen",
+      img: "https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg",
+      description: "A high schooler joins a secret group of sorcerers to battle curses and protect humanity.",
+      category: "action adventure supernatural"
+    },
+    {
+      id: 13,
+      title: "One Piece",
+      img: "https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg",
+      description: "Follow Monkey D. Luffy and his crew as they search for the legendary treasure known as One Piece.",
+      category: "adventure action fantasy"
+    },
+    {
+      id: 14,
+      title: "Demon Slayer",
+      img: "https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg",
+      description: "A young boy becomes a demon slayer to save his sister and avenge his family.",
+      category: "action adventure supernatural"
+    },
+    {
+      id: 15,
+      title: "Dragon Ball",
+      img: "https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg",
+      description: "Follow Goku's epic journey from childhood to the strongest fighter in the universe.",
+      category: "action adventure fantasy"
     }
-  </script>
+  ];
+
+  // Helper: get query param 'q'
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param) || '';
+  }
+
+  // Render filtered animes
+  function renderAnimes(filtered) {
+    const grid = document.getElementById('animeGrid');
+    const noResults = document.getElementById('noResults');
+    grid.innerHTML = '';
+
+    if (filtered.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    } else {
+      noResults.style.display = 'none';
+    }
+
+    filtered.forEach(anime => {
+      const card = document.createElement('a');
+      card.className = 'anime-card';
+      card.href = `anime.html?id=${anime.id}`;
+      card.setAttribute('aria-label', `Watch ${anime.title}`);
+      card.setAttribute('data-category', anime.category);
+
+      const img = document.createElement('img');
+      img.src = anime.img;
+      img.alt = anime.title;
+
+      const title = document.createElement('h3');
+      title.textContent = anime.title;
+
+      card.appendChild(img);
+      card.appendChild(title);
+      grid.appendChild(card);
+    });
+  }
+
+  // Main search logic
+  window.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const query = getQueryParam('q').trim().toLowerCase();
+
+    searchInput.value = query;
+
+    if (query === '') {
+      renderAnimes(animes); // Show all if empty search
+    } else {
+      const filtered = animes.filter(anime =>
+        anime.title.toLowerCase().includes(query)
+      );
+      renderAnimes(filtered);
+    }
+  });
+</script>
 
 </body>
 </html>
