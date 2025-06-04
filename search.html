@@ -1,92 +1,187 @@
-<!-- Search Page - Animefolex -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search - Animefolex</title>
+  <title>Search Results - Animefolex</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #121212;
-      color: #fff;
-      padding: 20px;
+      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 0;
     }
-    .search-container {
-      max-width: 800px;
-      margin: auto;
-    }
-    input[type="text"] {
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: none;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      z-index: -1;
     }
-    .anime-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
+
+    .navbar {
+      background-color: rgba(0,0,0,0.8);
+      padding: 15px 30px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
     }
-    .anime-card img {
-      width: 120px;
-      border-radius: 8px;
-      margin-right: 20px;
-    }
-    .anime-card h3 {
-      margin: 0 0 8px;
+
+    .navbar h1 {
       color: #ff3c3c;
+      font-size: 24px;
     }
-    .anime-card a {
+
+    .nav-links a {
+      color: white;
       text-decoration: none;
-      color: #fff;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    .search-bar {
+      margin: 30px auto;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 12px 20px;
+      background-color: #ff3c3c;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 0 40px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .anime-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+
+    .anime-card:hover {
+      transform: scale(1.05);
+    }
+
+    .anime-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .anime-card h3 {
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .search-bar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .search-bar input, .search-bar button {
+        border-radius: 30px;
+        margin: 5px 0;
+      }
+
+      .anime-card img {
+        height: 200px;
+      }
+
+      .anime-card h3 {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="Search anime...">
-  <div id="searchResults"></div>
-</div>
+  <div class="navbar">
+    <h1>ANIMEFOLEX</h1>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="category.html">Categories</a>
+    </div>
+  </div>
 
-<script>
-  const animes = [
-    { id: 1, title: 'Naruto', image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg' },
-    { id: 2, title: 'Attack on Titan', image: 'https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg' },
-    { id: 3, title: 'My Hero Academia', image: 'https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg' },
-    { id: 11, title: 'Orange', image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg' },
-    { id: 12, title: 'Jujutsu Kaisen', image: 'https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg' },
-    { id: 13, title: 'One Piece', image: 'https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg' },
-    { id: 14, title: 'Demon Slayer', image: 'https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg' },
-    { id: 15, title: 'Dragon Ball', image: 'https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg' }
-  ];
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for an anime..." />
+    <button onclick="searchAnime()">Search</button>
+  </div>
 
-  const input = document.getElementById('searchInput');
-  const results = document.getElementById('searchResults');
+  <div class="anime-grid" id="searchResults">
+    <!-- Anime results will appear here -->
+  </div>
 
-  input.addEventListener('input', () => {
-    const searchTerm = input.value.toLowerCase();
-    results.innerHTML = '';
+  <script>
+    const animes = [
+      { title: "Naruto", image: "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg", link: "anime.html?id=1" },
+      { title: "Attack on Titan", image: "https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg", link: "anime.html?id=2" },
+      { title: "My Hero Academia", image: "https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg", link: "anime.html?id=3" },
+      { title: "Orange", image: "https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg", link: "anime.html?id=11" },
+      // New Animes
+      { title: "Jujutsu Kaisen", image: "https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg", link: "anime.html?id=101" },
+      { title: "One Piece", image: "https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg", link: "anime.html?id=102" },
+      { title: "Demon Slayer", image: "https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg", link: "anime.html?id=103" },
+      { title: "Dragon Ball", image: "https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg", link: "anime.html?id=104" }
+    ];
 
-    const filtered = animes.filter(anime => anime.title.toLowerCase().includes(searchTerm));
+    function searchAnime() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const resultsContainer = document.getElementById("searchResults");
+      resultsContainer.innerHTML = "";
 
-    filtered.forEach(anime => {
-      results.innerHTML += `
-        <div class="anime-card">
+      const filtered = animes.filter(anime => anime.title.toLowerCase().includes(input));
+
+      if (filtered.length === 0) {
+        resultsContainer.innerHTML = "<p style='text-align:center; font-size:18px;'>No anime found.</p>";
+        return;
+      }
+
+      filtered.forEach(anime => {
+        const card = document.createElement("a");
+        card.className = "anime-card";
+        card.href = anime.link;
+        card.innerHTML = `
           <img src="${anime.image}" alt="${anime.title}">
-          <div>
-            <h3><a href="anime.html?id=${anime.id}">${anime.title}</a></h3>
-          </div>
-        </div>
-      `;
-    });
-  });
-</script>
+          <h3>${anime.title}</h3>
+        `;
+        resultsContainer.appendChild(card);
+      });
+    }
+  </script>
 
 </body>
 </html>
