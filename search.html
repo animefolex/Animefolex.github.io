@@ -1,127 +1,92 @@
+<!-- Search Page - Animefolex -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search Results - Animefolex</title>
+  <title>Search - Animefolex</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/8a/fa/5e/8afa5e05d104121de465437aabd01818.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: #121212;
       color: #fff;
-      margin: 0;
       padding: 20px;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: -1;
+    .search-container {
+      max-width: 800px;
+      margin: auto;
     }
-
-    h1 {
-      color: #ff3c3c;
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
       margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
     }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
+    .anime-card {
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
     }
-
-    li {
-      margin-bottom: 12px;
+    .anime-card img {
+      width: 120px;
+      border-radius: 8px;
+      margin-right: 20px;
     }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
+    .anime-card h3 {
+      margin: 0 0 8px;
       color: #ff3c3c;
-      text-decoration: underline;
     }
-
-    nav {
-      margin-bottom: 30px;
+    .anime-card a {
+      text-decoration: none;
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" style="color:#ff3c3c; font-weight:700;">&larr; Back to Home</a>
-  </nav>
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search anime...">
+  <div id="searchResults"></div>
+</div>
 
-  <h1>Search Results</h1>
-  <div id="results">Loading results...</div>
+<script>
+  const animes = [
+    { id: 1, title: 'Naruto', image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg' },
+    { id: 2, title: 'Attack on Titan', image: 'https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg' },
+    { id: 3, title: 'My Hero Academia', image: 'https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg' },
+    { id: 11, title: 'Orange', image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg' },
+    { id: 12, title: 'Jujutsu Kaisen', image: 'https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg' },
+    { id: 13, title: 'One Piece', image: 'https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg' },
+    { id: 14, title: 'Demon Slayer', image: 'https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg' },
+    { id: 15, title: 'Dragon Ball', image: 'https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg' }
+  ];
 
-  <script>
-    // ✅ Anime data list
-    const animeList = [
-      { id: 1, title: 'Naruto' },
-      { id: 2, title: 'Attack on Titan' },
-      { id: 3, title: 'My Hero Academia' },
-      { id: 4, title: 'Demon Slayer' },
-      { id: 5, title: 'One Piece' },
-      { id: 6, title: 'Dragon Ball Z' },
-      { id: 7, title: 'Fullmetal Alchemist' },
-      { id: 8, title: 'Tokyo Ghoul' },
-      { id: 9, title: 'Death Note' },
-      { id: 10, title: 'Bleach' },
-      { id: 11, title: 'Orange' } // ✅ Orange added here
-    ];
+  const input = document.getElementById('searchInput');
+  const results = document.getElementById('searchResults');
 
-    // Get search query from URL
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
+  input.addEventListener('input', () => {
+    const searchTerm = input.value.toLowerCase();
+    results.innerHTML = '';
 
-    // Display matching results
-    function showResults() {
-      const query = getQueryParam('q');
-      const resultsDiv = document.getElementById('results');
+    const filtered = animes.filter(anime => anime.title.toLowerCase().includes(searchTerm));
 
-      if (!query) {
-        resultsDiv.textContent = 'No search query provided.';
-        return;
-      }
-
-      const lowerQuery = query.toLowerCase();
-
-      const filtered = animeList.filter(anime =>
-        anime.title.toLowerCase().includes(lowerQuery)
-      );
-
-      if (filtered.length === 0) {
-        resultsDiv.textContent = `No results found for "${query}".`;
-        return;
-      }
-
-      const ul = document.createElement('ul');
-      filtered.forEach(anime => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `anime.html?id=${anime.id}`;
-        a.textContent = anime.title;
-        li.appendChild(a);
-        ul.appendChild(li);
-      });
-
-      resultsDiv.innerHTML = '';
-      resultsDiv.appendChild(ul);
-    }
-
-    showResults();
-  </script>
+    filtered.forEach(anime => {
+      results.innerHTML += `
+        <div class="anime-card">
+          <img src="${anime.image}" alt="${anime.title}">
+          <div>
+            <h3><a href="anime.html?id=${anime.id}">${anime.title}</a></h3>
+          </div>
+        </div>
+      `;
+    });
+  });
+</script>
 
 </body>
 </html>
