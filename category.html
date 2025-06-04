@@ -60,7 +60,6 @@
       color: #ff3c3c;
     }
 
-    /* Categories toggle button */
     .categories-toggle {
       background-color: #ff3c3c;
       border: none;
@@ -83,7 +82,6 @@
       background-color: #e63636;
     }
 
-    /* Genre list container */
     .genre-list {
       max-width: 600px;
       margin: 0 auto 40px;
@@ -98,11 +96,10 @@
     }
 
     .genre-list.show {
-      max-height: 500px; /* enough for all buttons */
+      max-height: 500px;
       opacity: 1;
     }
 
-    /* Genre buttons */
     .genre-btn {
       background-color: rgba(255, 60, 60, 0.8);
       border: none;
@@ -126,7 +123,6 @@
       background-color: #e63636;
     }
 
-    /* Anime Grid */
     .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -161,7 +157,6 @@
       font-size: 18px;
     }
 
-    /* Responsive styles */
     @media (max-width: 768px) {
       .navbar {
         padding: 10px 20px;
@@ -236,7 +231,6 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <div class="navbar">
     <h1>ANIMEFOLEX</h1>
     <div class="nav-links">
@@ -245,10 +239,8 @@
     </div>
   </div>
 
-  <!-- Categories toggle button -->
   <button class="categories-toggle" id="toggleGenresBtn">Show Categories ▼</button>
 
-  <!-- Genre list -->
   <div class="genre-list" id="genreList">
     <button class="genre-btn active" data-category="all">All</button>
     <button class="genre-btn" data-category="adventure">Adventure</button>
@@ -262,30 +254,41 @@
     <button class="genre-btn" data-category="thriller">Thriller</button>
   </div>
 
-  <!-- Anime Grid -->
   <div class="anime-grid" id="animeGrid">
-    <!-- Naruto -->
+    <!-- Existing Animes -->
     <a class="anime-card" href="anime.html?id=1" data-category="adventure action">
       <img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg" alt="Naruto" />
       <h3>Naruto</h3>
     </a>
-
-    <!-- Attack on Titan -->
     <a class="anime-card" href="anime.html?id=2" data-category="action adventure thriller">
       <img src="https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg" alt="Attack on Titan" />
       <h3>Attack on Titan</h3>
     </a>
-
-    <!-- My Hero Academia -->
     <a class="anime-card" href="anime.html?id=3" data-category="action adventure fantasy">
       <img src="https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg" alt="My Hero Academia" />
       <h3>My Hero Academia</h3>
     </a>
-
-    <!-- Orange -->
     <a class="anime-card" href="anime.html?id=11" data-category="slice of life drama romance">
       <img src="https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg" alt="Orange" />
       <h3>Orange</h3>
+    </a>
+
+    <!-- New Animes -->
+    <a class="anime-card" href="anime.html?id=101" data-category="action fantasy thriller">
+      <img src="https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg" alt="Jujutsu Kaisen" />
+      <h3>Jujutsu Kaisen</h3>
+    </a>
+    <a class="anime-card" href="anime.html?id=102" data-category="adventure action comedy">
+      <img src="https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg" alt="One Piece" />
+      <h3>One Piece</h3>
+    </a>
+    <a class="anime-card" href="anime.html?id=103" data-category="action adventure fantasy">
+      <img src="https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg" alt="Demon Slayer" />
+      <h3>Demon Slayer</h3>
+    </a>
+    <a class="anime-card" href="anime.html?id=104" data-category="action adventure sci-fi">
+      <img src="https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg" alt="Dragon Ball" />
+      <h3>Dragon Ball</h3>
     </a>
   </div>
 
@@ -296,13 +299,11 @@
     const animeGrid = document.getElementById('animeGrid');
     const animeCards = animeGrid.querySelectorAll('.anime-card');
 
-    // Toggle genre list visibility
     toggleBtn.addEventListener('click', () => {
       const isShown = genreList.classList.toggle('show');
       toggleBtn.textContent = isShown ? 'Hide Categories ▲' : 'Show Categories ▼';
     });
 
-    // Filter function
     function filterByCategory(category) {
       animeCards.forEach(card => {
         const cardCategories = card.getAttribute('data-category').toLowerCase();
@@ -314,20 +315,15 @@
       });
     }
 
-    // Handle genre button clicks
     genreButtons.forEach(button => {
       button.addEventListener('click', () => {
-        // Remove active from all
         genreButtons.forEach(btn => btn.classList.remove('active'));
-        // Set active to clicked
         button.classList.add('active');
-
         const category = button.getAttribute('data-category');
         filterByCategory(category);
       });
     });
 
-    // Initially show all
     filterByCategory('all');
   </script>
 
