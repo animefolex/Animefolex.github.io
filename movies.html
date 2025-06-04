@@ -2,143 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Movies - Animefolex</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+    /* [Same styling as your index.html, reused below] */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/736x/ee/c8/a9/eec8a9e0f738f459e8d360129703fc09.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      min-height: 100vh;
+      position: relative;
+    }
+
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
-    header {
-      padding: 20px;
-      text-align: center;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(26, 26, 26, 0.85);
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    nav {
-      text-align: center;
-      margin-bottom: 20px;
+
+    .navbar h1 {
+      color: #ff3c3c;
+      font-size: 24px;
     }
-    nav a {
-      color: #fff;
-      margin: 0 15px;
+
+    .nav-links a {
+      color: #ffffff;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
-    nav a:hover {
+
+    .nav-links a:hover {
       color: #ff3c3c;
     }
-    nav a.active {
-      color: #ff3c3c;
-    }
-    .search-bar {
+
+    .search-container {
+      margin-top: 100px;
       text-align: center;
-      margin-bottom: 20px;
     }
-    .search-bar input[type="text"] {
-      padding: 10px;
+
+    .search-container form {
+      display: inline-flex;
       width: 60%;
-      max-width: 400px;
-      border: none;
-      border-radius: 20px;
+      max-width: 500px;
+    }
+
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 12px 20px;
       font-size: 16px;
-    }
-    .search-bar button {
-      padding: 10px 20px;
-      margin-left: 10px;
       border: none;
-      border-radius: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
       background-color: #ff3c3c;
+      border: none;
       color: white;
-      font-weight: bold;
+      font-size: 16px;
+      border-radius: 0 5px 5px 0;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .search-bar button:hover {
-      background-color: #e63232;
+
+    .search-container button:hover {
+      background-color: #e63636;
     }
-    .movie-grid {
+
+    .popular-heading {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ff3c3c;
+    }
+
+    .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 0 40px 40px;
       max-width: 1200px;
       margin: auto;
     }
-    .movie-card {
+
+    .anime-card {
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
-      padding: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
       text-align: center;
-      transition: transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      cursor: pointer;
     }
-    .movie-card:hover {
+
+    .anime-card:hover {
       transform: scale(1.05);
     }
-    .movie-card img {
+
+    .anime-card img {
       width: 100%;
-      border-radius: 8px;
+      height: 250px;
+      object-fit: cover;
     }
-    .movie-card h3 {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #fff;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
+
+    .anime-card h3 {
+      padding: 10px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1 style="color:#ff3c3c;">Animefolex - Movies</h1>
-  </header>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>ANIMEFOLEX</h1>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="movies.html">Movies</a>
+      <a href="category.html">Categories</a>
+    </div>
+  </div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="movies.html" class="active">Movies</a>
-    <a href="categoriesmovies.html">Categories</a>
-  </nav>
-
-  <div class="search-bar">
-    <form action="searchmovies.html" method="get">
-      <input type="text" name="q" placeholder="Search for anime movies...">
-      <button type="submit">Search</button>
+  <!-- Search Bar -->
+  <div class="search-container">
+    <form onsubmit="return handleSearch(event)">
+      <input type="text" id="searchInput" placeholder="Search for movies..." required />
+      <button type="submit">🔍</button>
     </form>
   </div>
 
-  <section class="movie-grid">
-    <a href="movieDetails.html?id=1">
-      <div class="movie-card">
-        <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name">
-        <h3>Your Name</h3>
-      </div>
+  <!-- Popular Movies Heading -->
+  <h2 class="popular-heading">Popular Movies</h2>
+
+  <!-- Movie Grid -->
+  <div class="anime-grid" id="movieGrid">
+    <!-- Movie Cards -->
+    <a class="anime-card" href="moviedetail.html?id=1">
+      <img src="https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg" alt="Your Name" />
+      <h3>Your Name</h3>
     </a>
-    <a href="movieDetails.html?id=2">
-      <div class="movie-card">
-        <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice">
-        <h3>A Silent Voice</h3>
-      </div>
+    <a class="anime-card" href="moviedetail.html?id=2">
+      <img src="https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg" alt="A Silent Voice" />
+      <h3>A Silent Voice</h3>
     </a>
-    <a href="movieDetails.html?id=3">
-      <div class="movie-card">
-        <img src="https://i.pinimg.com/736x/92/97/b4/9297b4adcfbf68db04b3842dc14e204a.jpg" alt="Suzume">
-        <h3>Suzume</h3>
-      </div>
+    <a class="anime-card" href="moviedetail.html?id=3">
+      <img src="https://i.pinimg.com/736x/52/f8/59/52f8594a8f8b8cb84f8db1d930f7e403.jpg" alt="Suzume" />
+      <h3>Suzume</h3>
     </a>
-    <!-- Add more movies similarly -->
-  </section>
+    <a class="anime-card" href="moviedetail.html?id=4">
+      <img src="https://i.pinimg.com/736x/28/f9/5c/28f95c16570869aa7c9a1dc1c59c2f82.jpg" alt="Weathering With You" />
+      <h3>Weathering With You</h3>
+    </a>
+  </div>
+
+  <script>
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = document.getElementById("searchInput").value.trim();
+      if (query !== "") {
+        window.location.href = `searchmovies.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
 
 </body>
 </html>
