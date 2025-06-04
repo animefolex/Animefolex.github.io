@@ -7,13 +7,12 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/99/52/80/995280deb5b4be92bd1a888d3bdccd84.jpg') no-repeat center center fixed;
+      background: url('https://wallpapercave.com/uwp/uwp4611334.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       margin: 0;
       padding: 20px;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -21,80 +20,58 @@
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      padding: 20px;
+    a {
+      color: #ff3c3c;
+      font-weight: bold;
+      text-decoration: none;
     }
-
+    .movie-container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(26, 26, 26, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .movie-container img {
+      max-width: 300px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
     h1 {
       color: #ff3c3c;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
-
-    .movie-details {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .movie-details img {
-      width: 250px;
-      border-radius: 10px;
-    }
-
-    .movie-info {
-      flex: 1;
-    }
-
-    nav {
-      margin-bottom: 20px;
-    }
-
-    nav a {
-      color: #ff3c3c;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
     p {
       font-size: 16px;
       line-height: 1.6;
     }
-
-    @media (max-width: 600px) {
-      .movie-details {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .movie-details img {
-        width: 100%;
-      }
+    .back-link {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .watch-button {
+      display: inline-block;
+      margin: 10px 8px;
+      padding: 10px 18px;
+      background-color: #ff3c3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .watch-button:hover {
+      background-color: #e03131;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="movies.html">&larr; Back to Movies</a>
-  </nav>
+  <a class="back-link" href="categoriesmovies.html">&larr; Back to Movies</a>
 
-  <div class="container">
-    <h1 id="movie-title">Loading...</h1>
-    <div class="movie-details">
-      <img id="movie-thumbnail" src="" alt="Movie Thumbnail">
-      <div class="movie-info">
-        <p id="movie-description">Please wait while we load the details...</p>
-      </div>
-    </div>
+  <div class="movie-container" id="movieDetails">
+    Loading movie details...
   </div>
 
   <script>
@@ -102,53 +79,50 @@
       {
         id: 1,
         title: "Your Name",
-        thumbnail: "https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg",
-        description: "Two teenagers share a profound, magical connection upon discovering they are swapping bodies."
+        description: "Two teenagers share a profound, magical connection upon discovering they are swapping bodies.",
+        image: "https://i.pinimg.com/736x/8b/86/f1/8b86f174ab32ade7f8ba84b970349273.jpg",
+        category: "Romance",
+        watchUrl: "https://gplinks.co/DEKjn"
       },
       {
         id: 2,
         title: "A Silent Voice",
-        thumbnail: "https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg",
-        description: "A former bully tries to make amends with a deaf girl he once tormented."
+        description: "A former bully tries to make amends with a deaf girl he once tormented.",
+        image: "https://i.pinimg.com/736x/da/ff/df/daffdf450cd74a47eee4e2ad0f274200.jpg",
+        category: "Drama"
       },
       {
         id: 3,
         title: "Suzume",
-        thumbnail: "https://i.pinimg.com/736x/52/f8/59/52f8594a8f8b8cb84f8db1d930f7e403.jpg",
-        description: "Suzume follows a teenage girl and a mysterious young man on a journey to prevent natural disasters."
+        description: "Suzume follows a teenage girl and a mysterious young man on a journey to prevent natural disasters.",
+        image: "https://i.pinimg.com/736x/52/f8/59/52f8594a8f8b8cb84f8db1d930f7e403.jpg",
+        category: "Fantasy"
       },
       {
         id: 4,
         title: "Weathering With You",
-        thumbnail: "https://i.pinimg.com/736x/28/f9/5c/28f95c16570869aa7c9a1dc1c59c2f82.jpg",
-        description: "A runaway teen befriends a girl who can manipulate the weather in Tokyo."
+        description: "A runaway teen befriends a girl who can manipulate the weather in Tokyo.",
+        image: "https://i.pinimg.com/736x/28/f9/5c/28f95c16570869aa7c9a1dc1c59c2f82.jpg",
+        category: "Romance"
       }
-      // Add more movies as needed
     ];
 
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = parseInt(urlParams.get('id'));
+    const movie = movieData.find(item => item.id === movieId);
+    const container = document.getElementById('movieDetails');
+
+    if (movie) {
+      container.innerHTML = `
+        <img src="${movie.image}" alt="${movie.title}">
+        <h1>${movie.title}</h1>
+        <p><strong>Category:</strong> ${movie.category || 'N/A'}</p>
+        <p>${movie.description}</p>
+        ${movie.watchUrl ? `<a href="${movie.watchUrl}" target="_blank" class="watch-button">▶ Watch Now</a>` : ''}
+      `;
+    } else {
+      container.innerHTML = `<p>Movie not found.</p>`;
     }
-
-    function loadMovieDetails() {
-      const movieId = parseInt(getQueryParam('id'));
-      const movie = movieData.find(m => m.id === movieId);
-
-      if (!movie) {
-        document.getElementById('movie-title').textContent = 'Movie Not Found';
-        document.getElementById('movie-description').textContent = 'The movie you are looking for does not exist.';
-        document.getElementById('movie-thumbnail').style.display = 'none';
-        return;
-      }
-
-      document.getElementById('movie-title').textContent = movie.title;
-      document.getElementById('movie-thumbnail').src = movie.thumbnail;
-      document.getElementById('movie-thumbnail').alt = movie.title;
-      document.getElementById('movie-description').textContent = movie.description;
-    }
-
-    loadMovieDetails();
   </script>
 
 </body>
