@@ -1,3 +1,4 @@
+<!-- Anime Details - Animefolex -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +21,6 @@
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-    a {
-      color: #ff3c3c;
-      font-weight: bold;
-      text-decoration: none;
-    }
     .anime-container {
       max-width: 800px;
       margin: auto;
@@ -40,15 +36,10 @@
     }
     h1 {
       color: #ff3c3c;
-      margin-bottom: 10px;
     }
     p {
       font-size: 16px;
       line-height: 1.6;
-    }
-    .back-link {
-      display: block;
-      margin-bottom: 20px;
     }
     .watch-button {
       display: inline-block;
@@ -59,88 +50,116 @@
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
-      transition: background 0.3s ease;
     }
-    .watch-button:hover {
-      background-color: #e03131;
+    .back-link {
+      color: #ff3c3c;
+      display: block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <a class="back-link" href="index.html">&larr; Back to Home</a>
+<a class="back-link" href="index.html">&larr; Back to Home</a>
 
-  <div class="anime-container" id="animeDetails">
-    Loading anime details...
-  </div>
+<div class="anime-container" id="animeDetails">Loading anime details...</div>
 
-  <script>
-    const animeData = [
-      {
-        id: 1,
-        title: 'Naruto',
-        description: 'A young ninja strives to become the Hokage.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
-        category: 'Action',
-        season1Url: 'https://gplinks.co/Hkb9D',
-        season2Url: 'https://gplinks.co/4m78a3',
-        season3Url: 'https://gplinks.co/ti80yQ3S',
-        season4Url: 'https://gplinks.co/Ml3B',
-        season5Url: 'https://gplinks.co/Wrgfd'
-      },
-      {
-        id: 2,
-        title: 'Attack on Titan',
-        description: 'Humans fight to survive in a world ruled by Titans.',
-        image: 'https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg',
-        category: 'Action',
-        season1Url: 'https://gplinks.co/SxlmoqE',
-        season2Url: 'https://gplinks.co/tWCgC',
-        season3Url: 'https://gplinks.co/Gb7Ysh'
-      },
-      {
-        id: 3,
-        title: 'My Hero Academia',
-        description: 'A superhero-loving boy without powers is determined to enroll in a prestigious hero academy.',
-        image: 'https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg',
-        category: 'Action',
-        season1Url: 'https://gplinks.co/thHvf',
-        season2Url: 'https://gplinks.co/xn1g',
-        season3Url: 'https://gplinks.co/129z7f',
-        season4Url: 'https://gplinks.co/10ztV'
-      },
-      {
-        id: 11,
-        title: 'Orange',
-        description: 'A girl receives letters from her future self to prevent regrets.',
-        image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg',
-        category: 'Slice of Life',
-        season1Url: 'https://gplinks.co/0SCgO9H'
-      }
-    ];
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const animeId = parseInt(urlParams.get('id'));
-    const anime = animeData.find(item => item.id === animeId);
-    const container = document.getElementById('animeDetails');
-
-    if (anime) {
-      container.innerHTML = `
-        <img src="${anime.image}" alt="${anime.title}">
-        <h1>${anime.title}</h1>
-        <p><strong>Category:</strong> ${anime.category}</p>
-        <p>${anime.description}</p>
-
-        ${anime.season1Url ? `<a href="${anime.season1Url}" target="_blank" class="watch-button">▶ Watch Season 1</a>` : ''}
-        ${anime.season2Url ? `<a href="${anime.season2Url}" target="_blank" class="watch-button">▶ Watch Season 2</a>` : ''}
-        ${anime.season3Url ? `<a href="${anime.season3Url}" target="_blank" class="watch-button">▶ Watch Season 3</a>` : ''}
-        ${anime.season4Url ? `<a href="${anime.season4Url}" target="_blank" class="watch-button">▶ Watch Season 4</a>` : ''}
-        ${anime.season5Url ? `<a href="${anime.season5Url}" target="_blank" class="watch-button">▶ Watch Season 5</a>` : ''}
-      `;
-    } else {
-      container.innerHTML = `<p>Anime not found.</p>`;
+<script>
+  const animeData = [
+    {
+      id: 1,
+      title: 'Naruto',
+      description: 'A young ninja strives to become the Hokage.',
+      image: 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
+      category: 'Action',
+      season1Url: 'https://gplinks.co/Hkb9D',
+      season2Url: 'https://gplinks.co/4m78a3',
+      season3Url: 'https://gplinks.co/ti80yQ3S',
+      season4Url: 'https://gplinks.co/Ml3B',
+      season5Url: 'https://gplinks.co/Wrgfd'
+    },
+    {
+      id: 2,
+      title: 'Attack on Titan',
+      description: 'Humans fight to survive in a world ruled by Titans.',
+      image: 'https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg',
+      category: 'Action',
+      season1Url: 'https://gplinks.co/SxlmoqE',
+      season2Url: 'https://gplinks.co/tWCgC',
+      season3Url: 'https://gplinks.co/Gb7Ysh'
+    },
+    {
+      id: 3,
+      title: 'My Hero Academia',
+      description: 'A superhero-loving boy without powers is determined to enroll in a prestigious hero academy.',
+      image: 'https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg',
+      category: 'Action',
+      season1Url: 'https://gplinks.co/thHvf',
+      season2Url: 'https://gplinks.co/xn1g',
+      season3Url: 'https://gplinks.co/129z7f',
+      season4Url: 'https://gplinks.co/10ztV'
+    },
+    {
+      id: 11,
+      title: 'Orange',
+      description: 'A girl receives letters from her future self to prevent regrets.',
+      image: 'https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg',
+      category: 'Slice of Life',
+      season1Url: 'https://gplinks.co/0SCgO9H'
+    },
+    {
+      id: 12,
+      title: 'Jujutsu Kaisen',
+      description: 'A high school student joins a secret organization of sorcerers to eliminate deadly curses.',
+      image: 'https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg',
+      category: 'Supernatural'
+    },
+    {
+      id: 13,
+      title: 'One Piece',
+      description: 'Monkey D. Luffy sails the Grand Line with his pirate crew in search of the legendary One Piece treasure.',
+      image: 'https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg',
+      category: 'Adventure'
+    },
+    {
+      id: 14,
+      title: 'Demon Slayer',
+      description: 'Tanjiro Kamado joins the Demon Slayer Corps to avenge his family and cure his sister.',
+      image: 'https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg',
+      category: 'Action'
+    },
+    {
+      id: 15,
+      title: 'Dragon Ball',
+      description: 'Goku trains in martial arts and sets off on a quest for the seven Dragon Balls.',
+      image: 'https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg',
+      category: 'Fantasy'
     }
-  </script>
+  ];
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const animeId = parseInt(urlParams.get('id'));
+  const anime = animeData.find(item => item.id === animeId);
+  const container = document.getElementById('animeDetails');
+
+  if (anime) {
+    container.innerHTML = `
+      <img src="${anime.image}" alt="${anime.title}">
+      <h1>${anime.title}</h1>
+      <p><strong>Category:</strong> ${anime.category}</p>
+      <p>${anime.description}</p>
+      ${anime.season1Url ? `<a href="${anime.season1Url}" target="_blank" class="watch-button">▶ Watch Season 1</a>` : ''}
+      ${anime.season2Url ? `<a href="${anime.season2Url}" target="_blank" class="watch-button">▶ Watch Season 2</a>` : ''}
+      ${anime.season3Url ? `<a href="${anime.season3Url}" target="_blank" class="watch-button">▶ Watch Season 3</a>` : ''}
+      ${anime.season4Url ? `<a href="${anime.season4Url}" target="_blank" class="watch-button">▶ Watch Season 4</a>` : ''}
+      ${anime.season5Url ? `<a href="${anime.season5Url}" target="_blank" class="watch-button">▶ Watch Season 5</a>` : ''}
+    `;
+  } else {
+    container.innerHTML = `<p>Anime not found.</p>`;
+  }
+</script>
 
 </body>
 </html>
