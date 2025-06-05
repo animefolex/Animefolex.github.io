@@ -1,3 +1,4 @@
+<!-- Search Results - Animefolex -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Animefolex - Search Results</title>
   <style>
+    /* Your original CSS remains unchanged */
     body {
       font-family: 'Segoe UI', sans-serif;
       background: url('https://i.pinimg.com/736x/57/39/72/573972cc6ff37b69735d8ee1b26a28a3.jpg') no-repeat center center fixed;
@@ -114,113 +116,60 @@
       font-weight: 700;
     }
     @media (max-width: 768px) {
-      .anime-card img {
-        height: 200px;
-      }
-      .anime-card h3 {
-        font-size: 16px;
-      }
-      form.search-form {
-        max-width: 90%;
-      }
+      .anime-card img { height: 200px; }
+      .anime-card h3 { font-size: 16px; }
+      form.search-form { max-width: 90%; }
     }
     @media (max-width: 480px) {
-      .anime-card img {
-        height: 180px;
-      }
-      .anime-card h3 {
-        font-size: 15px;
-      }
+      .anime-card img { height: 180px; }
+      .anime-card h3 { font-size: 15px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <h1>ANIMEFOLEX</h1>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="category.html">Categories</a>
-    </div>
+<div class="navbar">
+  <h1>ANIMEFOLEX</h1>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="category.html">Categories</a>
   </div>
+</div>
 
-  <form class="search-form" action="search.html" method="GET" role="search" aria-label="Anime search form">
-    <input type="text" name="q" id="searchInput" placeholder="Search anime..." autocomplete="off" />
-    <button type="submit">Search</button>
-  </form>
+<form class="search-form" action="search.html" method="GET" role="search" aria-label="Anime search form">
+  <input type="text" name="q" id="searchInput" placeholder="Search anime..." autocomplete="off" />
+  <button type="submit">Search</button>
+</form>
 
-  <div class="anime-grid" id="animeGrid"></div>
-  <div class="no-results" id="noResults" style="display:none;">No results found.</div>
+<div class="anime-grid" id="animeGrid"></div>
+<div class="no-results" id="noResults" style="display:none;">No results found.</div>
 
 <script>
-  // Your anime data including old and new animes, no GP links on new ones, with descriptions
   const animes = [
-    {
-      id: 1,
-      title: "Naruto",
-      img: "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg",
-      description: "Follow Naruto Uzumaki, a young ninja with a sealed demon fox inside him, on his quest to become Hokage.",
-      category: "adventure action"
-    },
-    {
-      id: 2,
-      title: "Attack on Titan",
-      img: "https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg",
-      description: "Humanity fights for survival against giant humanoid Titans in a post-apocalyptic world.",
-      category: "action adventure thriller"
-    },
-    {
-      id: 3,
-      title: "My Hero Academia",
-      img: "https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg",
-      description: "In a world where people have superpowers called quirks, a boy dreams of becoming the greatest hero.",
-      category: "action adventure fantasy"
-    },
-    {
-      id: 11,
-      title: "Orange",
-      img: "https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg",
-      description: "A touching story of regret and second chances centered on a girl receiving letters from her future self.",
-      category: "slice of life drama romance"
-    },
-    // New animes without GP links, with descriptions
-    {
-      id: 12,
-      title: "Jujutsu Kaisen",
-      img: "https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg",
-      description: "A high schooler joins a secret group of sorcerers to battle curses and protect humanity.",
-      category: "action adventure supernatural"
-    },
-    {
-      id: 13,
-      title: "One Piece",
-      img: "https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg",
-      description: "Follow Monkey D. Luffy and his crew as they search for the legendary treasure known as One Piece.",
-      category: "adventure action fantasy"
-    },
-    {
-      id: 14,
-      title: "Demon Slayer",
-      img: "https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg",
-      description: "A young boy becomes a demon slayer to save his sister and avenge his family.",
-      category: "action adventure supernatural"
-    },
-    {
-      id: 15,
-      title: "Dragon Ball",
-      img: "https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg",
-      description: "Follow Goku's epic journey from childhood to the strongest fighter in the universe.",
-      category: "action adventure fantasy"
-    }
+    { id: 1, title: "Naruto", img: "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg", description: "", category: "" },
+    { id: 2, title: "Attack on Titan", img: "https://i.pinimg.com/736x/f6/b1/7b/f6b17b9973aec330a0e9c1213e7b8340.jpg", description: "", category: "" },
+    { id: 3, title: "My Hero Academia", img: "https://i.pinimg.com/736x/4e/a8/8a/4ea88af79688fff5e5630df45371383f.jpg", description: "", category: "" },
+    { id: 11, title: "Orange", img: "https://i.pinimg.com/736x/32/be/85/32be859a7c1bf20fba1ec9f4e7c484e8.jpg", description: "", category: "" },
+    { id: 12, title: "Jujutsu Kaisen", img: "https://i.pinimg.com/736x/65/1f/d1/651fd18ff7fa923d5f1fa77a6be381ad.jpg", description: "", category: "" },
+    { id: 13, title: "One Piece", img: "https://i.pinimg.com/736x/e7/c9/a3/e7c9a33d5872e474e6e8dfbdb24625dd.jpg", description: "", category: "" },
+    { id: 14, title: "Demon Slayer", img: "https://i.pinimg.com/736x/6e/67/bc/6e67bc3de2dc964563e5242ab879e6c5.jpg", description: "", category: "" },
+    { id: 15, title: "Dragon Ball", img: "https://i.pinimg.com/736x/ae/d2/49/aed2493a676cba24cf3b9ef91dcb5be5.jpg", description: "", category: "" },
+    { id: 16, title: "Solo Leveling", img: "https://i.pinimg.com/736x/6a/06/14/6a06147990dfdff42b91d501f566ce49.jpg", description: "", category: "" },
+    { id: 17, title: "Sakamoto Days", img: "https://i.pinimg.com/736x/f3/ce/7c/f3ce7cdce3763562d639408963c40b52.jpg", description: "", category: "" },
+    { id: 18, title: "Dr. Stone", img: "https://i.pinimg.com/736x/80/0b/ed/800bedb39f42944e7a6d3a45f16f9a9b.jpg", description: "", category: "" },
+    { id: 19, title: "Devil May Cry", img: "https://i.pinimg.com/736x/cb/92/b8/cb92b88479fcbf8aa8f8d5d68ad84a4b.jpg", description: "", category: "" },
+    { id: 20, title: "Re:Zero", img: "https://i.pinimg.com/736x/88/41/aa/8841aa0195cdb2148852f88e1b2ec0e0.jpg", description: "", category: "" },
+    { id: 21, title: "The Apothecary Diaries", img: "https://i.pinimg.com/736x/fb/94/f9/fb94f931a19414b09c8940a270c9acb6.jpg", description: "", category: "" },
+    { id: 22, title: "Chainsaw Man", img: "https://i.pinimg.com/736x/59/45/33/594533f18f9d4b5f0b32cf7ecb1a2286.jpg", description: "", category: "" },
+    { id: 23, title: "Tokyo Revengers", img: "https://i.pinimg.com/736x/f9/42/40/f942408a7f438bd7c45287109330046b.jpg", description: "", category: "" },
+    { id: 24, title: "Death Note", img: "https://i.pinimg.com/736x/4a/9a/24/4a9a24636f1aa68e3e553b3b31baddc4.jpg", description: "", category: "" }
   ];
 
-  // Helper: get query param 'q'
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param) || '';
   }
 
-  // Render filtered animes
   function renderAnimes(filtered) {
     const grid = document.getElementById('animeGrid');
     const noResults = document.getElementById('noResults');
@@ -253,7 +202,6 @@
     });
   }
 
-  // Main search logic
   window.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const query = getQueryParam('q').trim().toLowerCase();
@@ -261,7 +209,7 @@
     searchInput.value = query;
 
     if (query === '') {
-      renderAnimes(animes); // Show all if empty search
+      renderAnimes(animes);
     } else {
       const filtered = animes.filter(anime =>
         anime.title.toLowerCase().includes(query)
