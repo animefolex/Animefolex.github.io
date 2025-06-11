@@ -133,29 +133,40 @@
     }
 
     .anime-card {
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-      cursor: pointer;
-    }
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: white; /* Added this */
+}
 
-    .anime-card:hover {
-      transform: scale(1.05);
-    }
+.anime-card:hover {
+  transform: scale(1.05);
+}
 
-    .anime-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
+.anime-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
 
-    .anime-card h3 {
-      padding: 10px;
-      font-size: 18px;
-    }
+.anime-card h3 {
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  color: white; /* Added this */
+}
+
+.anime-card:visited,
+.anime-card:hover,
+.anime-card:focus,
+.anime-card:active {
+  color: white; /* Added this */
+  text-decoration: none;
+}
+
 
     @media (max-width: 768px) {
       .navbar {
